@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!-- saved from url=(0078)https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>BNF for MeggyJava</title>
+
+
+</head>
+<body bgcolor="#FFFFFF" vlink="#0000EE" link="#0000EE">
+<h1 align="CENTER">BNF for MeggyJava</h1>
+
+Based on a <a href="http://www.cambridge.org/resources/052182060X/MCIIJ2e/grammar.htm">MiniJava grammar</a>.  MeggyJava is a variant of MiniJava developed for the
+<a href="http://www.cs.colostate.edu/~cs453">compiler course at Colorado State University</a>.
+The main differences are the addition of calls to a meggyjava package
+that is assumed to be built in to the MeggyJava language much like
+System.out.println() was built in to MiniJava.  We also did smaller
+differences such as allowing multiple statements within main.
+<p>
+First, we list the full grammar for MeggyJava, which will be completed in PA6.  Below that grammar are
+versions of the grammar for PA2 through PA5 in CS 453.
+
+</p><p>
+Note that the terminals are defined <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/Terminals%20for%20MeggyJava.html">HERE.</a> 
+
+</p><h2 align="CENTER">Full Meggy Java Grammar (PA6)</h2>
+<table>
+<tbody><tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod1">Goal</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"import" "meggy.Meggy" ";" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod2">MainClass</a> ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod3">ClassDeclaration</a> )* &lt;EOF&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod2">MainClass</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "{" "public" "static" "void" "main" "(" "String" "[" "]" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ")" "{" (<a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a>)* "}" "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod3">ClassDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> <!--( "extends" <A HREF="#prod4">Identifier</A> )?--> "{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod6">VarDeclaration</a> )* ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod7">MethodDeclaration</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod6">VarDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod7">MethodDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<!--<TD ALIGN=LEFT VALIGN=BASELINE>"public" <A HREF="#prod8">Type</A> <A HREF="#prod4">Identifier</A> "(" ( <A HREF="#prod8">Type</A> <A HREF="#prod4">Identifier</A> ( "," <A HREF="#prod8">Type</A> <A HREF="#prod4">Identifier</A> )* )? ")" "{" ( <A HREF="#prod6">VarDeclaration</A> )* ( <A HREF="#prod5">Statement</A> )* ("return" <A HREF="#prod9">Expression</A> ";")? "}"</TD>
+</TR>
+<TR>
+<TD ALIGN=RIGHT VALIGN=BASELINE></TD>
+<TD ALIGN=CENTER VALIGN=BASELINE>|</TD>-->
+<td align="LEFT" valign="BASELINE">"public" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> )* )? ")" "{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod6">VarDeclaration</a> )* ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* ("return" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ";")? "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod8">Type</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Color" "[" "]"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"int" "[" "]"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"boolean"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"byte"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"int"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"void"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Color"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Button"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Tone"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod5">Statement</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.setPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.setAuxLEDs" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.toneStart" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.delay" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> )* )? ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> "else" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"while" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "=" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "[" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "]" "=" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod9">Expression</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "&amp;&amp;" | "&lt;" | "==" | "+" | "-" | "*" ) <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"> "-" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "[" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "]"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." "length"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> )* )? ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.getPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.checkButton" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" "byte" ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;INT_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;COLOR_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;BUTTON_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;TONE_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"true"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"false"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"this"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"new" "Meggy.Color" "[" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "]"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"new" "int" "[" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "]"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"new" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"!" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod4">Identifier</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">&lt;IDENTIFIER&gt;</td>
+</tr>
+</tbody></table>
+
+<hr>
+<a name="PA2">
+<h3>PA2 MeggyJava Grammar</h3>
+Only includes the Meggy.setPixel() statement,
+Meggy.Color literals, byte and int literals, and byte casts.
+<h2 align="CENTER">NON-TERMINALS</h2>
+<table>
+<tbody><tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod1">Goal</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"import" "meggy.Meggy" ";" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod2">MainClass</a> &lt;EOF&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod2">MainClass</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "{" "public" "static" "void" "main" "(" "String" "[" "]" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ")" "{" (<a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a>)* "}" "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod5">Statement</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"Meggy.setPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod9">Expression</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"(" "byte" ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;INT_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;COLOR_LITERAL&gt;</td>
+</tr>
+</tbody></table>
+
+
+
+
+<hr>
+</a><a name="PA3">
+<h3>PA3 MeggyJava Grammar</h3>
+Adds arithmetic expressions,
+some boolean expressions, and control flow as well as more
+built-in Meggy functionality.
+Byte addition and subtraction should result in byte types being
+promoted to integer types.
+<h2 align="CENTER">NON-TERMINALS</h2>
+<table>
+<tbody><tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod1">Goal</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"import" "meggy.Meggy" ";" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod2">MainClass</a> &lt;EOF&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod2">MainClass</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "{" "public" "static" "void" "main" "(" "String" "[" "]" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ")" "{" (<a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a>)* "}" "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod5">Statement</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.setPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.delay" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> "else" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"while" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod9">Expression</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "&amp;&amp;" | "==" | "+" | "-" | "*" ) <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"> "-" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.getPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.checkButton" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" "byte" ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;INT_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;COLOR_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;BUTTON_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"true"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"false"</td>
+</tr>
+<tr><td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"!" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+</tbody></table>
+
+
+
+<hr>
+</a><a name="PA4">
+<h3>PA4 MeggyJava Grammar</h3>
+Adds function definitions, function calls, parameter variables, and the
+less than expression
+to the PA3 MeggyJava Grammar.
+Need object creation syntax and this expression syntax to enable method
+calls that also compile with Java.
+It should be possible to pass an expression of type byte into 
+a method expecting an integer parameter.
+<h2 align="CENTER">NON-TERMINALS</h2>
+<table>
+<tbody><tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod1">Goal</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"import" "meggy.Meggy" ";" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod2">MainClass</a> ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod3">ClassDeclaration</a> )* &lt;EOF&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod2">MainClass</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "{" "public" "static" "void" "main" "(" "String" "[" "]" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ")" "{" (<a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a>)* "}" "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod3">ClassDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> <!--( "extends" <A HREF="#prod4">Identifier</A> )?--> "{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod7">MethodDeclaration</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod7">MethodDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"public" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> )* )? ")" "{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* ("return" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ";")? "}"</td>
+</tr>
+
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod8">Type</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"boolean"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"byte"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"int"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"void"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Color"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Button"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Tone"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod5">Statement</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.setPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.toneStart" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.delay" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> )* )? ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> "else" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"while" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod9">Expression</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "&amp;&amp;" | "&lt;" | "==" | "+" | "-" | "*" ) <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"> "-" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> )* )? ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.getPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.checkButton" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" "byte" ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;INT_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;COLOR_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;BUTTON_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;TONE_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"true"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"false"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"this"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"new" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"!" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod4">Identifier</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">&lt;IDENTIFIER&gt;</td>
+</tr>
+</tbody></table>
+
+
+<hr>
+</a><a name="PA5">
+<h3>PA5 MeggyJava Grammar</h3>
+Adds variable declarations, assignment statements, and object creation
+to the PA4 MeggyJava Grammar.
+It should be possible to assign a byte type expression to an integer variable.
+<h2 align="CENTER">NON-TERMINALS</h2>
+<table>
+<tbody><tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod1">Goal</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"import" "meggy.Meggy" ";" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod2">MainClass</a> ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod3">ClassDeclaration</a> )* &lt;EOF&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod2">MainClass</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "{" "public" "static" "void" "main" "(" "String" "[" "]" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ")" "{" (<a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a>)* "}" "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod3">ClassDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"class" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> <!--( "extends" <A HREF="#prod4">Identifier</A> )?--> "{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod6">VarDeclaration</a> )* ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod7">MethodDeclaration</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod6">VarDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod7">MethodDeclaration</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"public" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod8">Type</a> <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> )* )? ")" "{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod6">VarDeclaration</a> )* ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* ("return" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ";")? "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod8">Type</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"boolean"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"byte"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"int"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"void"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Color"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Button"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.Tone"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod5">Statement</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">"{" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> )* "}"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.setPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.toneStart" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.delay" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> )* )? ")" ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"if" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a> "else" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"while" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod5">Statement</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "=" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ";"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod9">Expression</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "&amp;&amp;" | "&lt;" | "==" | "+" | "-" | "*" ) <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"> "-" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "." <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ( <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ( "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> )* )? ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.getPixel" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> "," <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"Meggy.checkButton" "(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" "byte" ")" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;INT_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;COLOR_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;BUTTON_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">&lt;TONE_LITERAL&gt;</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"true"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"false"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE"><a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"this"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"new" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod4">Identifier</a> "(" ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"!" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a></td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"></td>
+<td align="CENTER" valign="BASELINE">|</td>
+<td align="LEFT" valign="BASELINE">"(" <a href="https://www.eecis.udel.edu/~pollock/672/f15/MeggyJavaInfo/BNFforMeggyJava.html#prod9">Expression</a> ")"</td>
+</tr>
+<tr>
+<td align="RIGHT" valign="BASELINE"><a name="prod4">Identifier</a></td>
+<td align="CENTER" valign="BASELINE">::=</td>
+<td align="LEFT" valign="BASELINE">&lt;IDENTIFIER&gt;</td>
+</tr>
+</tbody></table>
+
+
+</a>
+</body></html>
