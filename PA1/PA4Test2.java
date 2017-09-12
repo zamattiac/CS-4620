@@ -1,10 +1,14 @@
-// less than expressions
+// byte into int param
 import meggy.Meggy;
+
 
 class PA4Test2 {
 	public static void main (String [] args) {
-		if (1 < 2) {
-			Meggy.setPixel((byte)1, (byte)2, Meggy.Color.VIOLET);
-		}
+		(new methodClass()).method((byte)2);
+	}
+}
+
+class methodClass {
+	public void method(int i) {
 	}
 }
