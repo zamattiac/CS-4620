@@ -636,39 +636,39 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -2:
 						break;
 					case 2:
-						{return new Symbol(sym.PLUS,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.PLUS,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -3:
 						break;
 					case 3:
-						{return new Symbol(sym.MINUS,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MINUS,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -4:
 						break;
 					case 4:
-						{return new Symbol(sym.TIMES,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.TIMES,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -5:
 						break;
 					case 5:
-						{return new Symbol(sym.LPAREN,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.LPAREN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -6:
 						break;
 					case 6:
-						{return new Symbol(sym.RPAREN,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.RPAREN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -7:
 						break;
 					case 7:
-						{return new Symbol(sym.ASSIGN,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ASSIGN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -8:
 						break;
 					case 8:
-						{return new Symbol(sym.LBRACE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.LBRACE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -9:
 						break;
 					case 9:
-						{return new Symbol(sym.RBRACE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.RBRACE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -10:
 						break;
 					case 10:
-						{return new Symbol(sym.SEMI,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.SEMI,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -11:
 						break;
 					case 11:
@@ -676,35 +676,35 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -12:
 						break;
 					case 12:
-						{return new Symbol(sym.LT,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.LT,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -13:
 						break;
 					case 13:
-						{return new Symbol(sym.NOT,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.NOT,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -14:
 						break;
 					case 14:
-						{return new Symbol(sym.COMMA,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.COMMA,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -15:
 						break;
 					case 15:
-						{return new Symbol(sym.LBRACKET,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.LBRACKET,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -16:
 						break;
 					case 16:
-						{return new Symbol(sym.RBRACKET,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.RBRACKET,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -17:
 						break;
 					case 17:
-						{return new Symbol(sym.DOT,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.DOT,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -18:
 						break;
 					case 18:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -19:
 						break;
 					case 19:
-						{return new Symbol(sym.INT_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: " + yytext()));}
+						{return new Symbol(sym.INT_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), Integer.parseInt(yytext())));}
 					case -20:
 						break;
 					case 20:
@@ -716,15 +716,15 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -22:
 						break;
 					case 22:
-						{return new Symbol(sym.EQUAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.EQUAL,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -23:
 						break;
 					case 23:
-						{return new Symbol(sym.AND,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.AND,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -24:
 						break;
 					case 24:
-						{return new Symbol(sym.IF,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.IF,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -25:
 						break;
 					case 25:
@@ -732,223 +732,223 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -26:
 						break;
 					case 26:
-						{return new Symbol(sym.INT,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.INT,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -27:
 						break;
 					case 27:
-						{return new Symbol(sym.NEW,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.NEW,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -28:
 						break;
 					case 28:
-						{return new Symbol(sym.MAIN,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MAIN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -29:
 						break;
 					case 29:
-						{return new Symbol(sym.BYTE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.BYTE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -30:
 						break;
 					case 30:
-						{return new Symbol(sym.ELSE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ELSE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -31:
 						break;
 					case 31:
-						{return new Symbol(sym.TRUE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 1"));}
+						{return new Symbol(sym.TRUE,new SymbolValue(yyline+1, yychar+1, yytext(), 1));}
 					case -32:
 						break;
 					case 32:
-						{return new Symbol(sym.THIS,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.THIS,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -33:
 						break;
 					case 33:
-						{return new Symbol(sym.VOID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.VOID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -34:
 						break;
 					case 34:
-						{return new Symbol(sym.FALSE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 0"));}
+						{return new Symbol(sym.FALSE,new SymbolValue(yyline+1, yychar+1, yytext(), 0));}
 					case -35:
 						break;
 					case 35:
-						{return new Symbol(sym.WHILE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.WHILE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -36:
 						break;
 					case 36:
-						{return new Symbol(sym.CLASS,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.CLASS,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -37:
 						break;
 					case 37:
-						{return new Symbol(sym.IMPORT,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.IMPORT,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -38:
 						break;
 					case 38:
-						{return new Symbol(sym.LENGTH,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.LENGTH,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -39:
 						break;
 					case 39:
-						{return new Symbol(sym.STATIC,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.STATIC,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -40:
 						break;
 					case 40:
-						{return new Symbol(sym.RETURN,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.RETURN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -41:
 						break;
 					case 41:
-						{return new Symbol(sym.PUBLIC,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.PUBLIC,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -42:
 						break;
 					case 42:
-						{return new Symbol(sym.STRING,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.STRING,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -43:
 						break;
 					case 43:
-						{return new Symbol(sym.BOOLEAN,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.BOOLEAN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -44:
 						break;
 					case 44:
-						{return new Symbol(sym.EXTENDS,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.EXTENDS,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -45:
 						break;
 					case 45:
-						{return new Symbol(sym.MEGGYTONE,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYTONE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -46:
 						break;
 					case 46:
-						{return new Symbol(sym.MEGGY,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGY,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -47:
 						break;
 					case 47:
-						{return new Symbol(sym.MEGGYDELAY,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYDELAY,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -48:
 						break;
 					case 48:
-						{return new Symbol(sym.MEGGYCOLOR,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYCOLOR,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -49:
 						break;
 					case 49:
-						{return new Symbol(sym.MEGGYBUTTON,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYBUTTON,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -50:
 						break;
 					case 50:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 36363"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 36363));}
 					case -51:
 						break;
 					case 51:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 48541"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 48541));}
 					case -52:
 						break;
 					case 52:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 54485"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 54485));}
 					case -53:
 						break;
 					case 53:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 32397"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 32397));}
 					case -54:
 						break;
 					case 54:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 61157"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 61157));}
 					case -55:
 						break;
 					case 55:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 40816"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 40816));}
 					case -56:
 						break;
 					case 56:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 45816"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 45816));}
 					case -57:
 						break;
 					case 57:
-						{return new Symbol(sym.MEGGYSETPIXEL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYSETPIXEL,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -58:
 						break;
 					case 58:
-						{return new Symbol(sym.MEGGYGETPIXEL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYGETPIXEL,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -59:
 						break;
 					case 59:
-						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 2"));}
+						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 2));}
 					case -60:
 						break;
 					case 60:
-						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 1"));}
+						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 1));}
 					case -61:
 						break;
 					case 61:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 34323"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 34323));}
 					case -62:
 						break;
 					case 62:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 51427"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 51427));}
 					case -63:
 						break;
 					case 63:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 57724"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 57724));}
 					case -64:
 						break;
 					case 64:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 38526"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 38526));}
 					case -65:
 						break;
 					case 65:
-						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 43243"));}
+						{return new Symbol(sym.TONE_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 43243));}
 					case -66:
 						break;
 					case 66:
-						{return new Symbol(sym.MEGGYTONESTART,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYTONESTART,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -67:
 						break;
 					case 67:
-						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 4"));}
+						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 4));}
 					case -68:
 						break;
 					case 68:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 1"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 1));}
 					case -69:
 						break;
 					case 69:
-						{return new Symbol(sym.MEGGYSETAUXLEDS,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYSETAUXLEDS,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -70:
 						break;
 					case 70:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 0"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 0));}
 					case -71:
 						break;
 					case 71:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 5"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 5));}
 					case -72:
 						break;
 					case 72:
-						{return new Symbol(sym.MEGGYCHECKBUTTON,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.MEGGYCHECKBUTTON,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -73:
 						break;
 					case 73:
-						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 16"));}
+						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 16));}
 					case -74:
 						break;
 					case 74:
-						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 8"));}
+						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 8));}
 					case -75:
 						break;
 					case 75:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 4"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 4));}
 					case -76:
 						break;
 					case 76:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 7"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 7));}
 					case -77:
 						break;
 					case 77:
-						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 32"));}
+						{return new Symbol(sym.BUTTON_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 32));}
 					case -78:
 						break;
 					case 78:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 2"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 2));}
 					case -79:
 						break;
 					case 79:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 3"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 3));}
 					case -80:
 						break;
 					case 80:
-						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: 6"));}
+						{return new Symbol(sym.COLOR_LITERAL,new SymbolValue(yyline+1, yychar+1, yytext(), 6));}
 					case -81:
 						break;
 					case 82:
@@ -956,7 +956,7 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -82:
 						break;
 					case 83:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -83:
 						break;
 					case 84:
@@ -972,323 +972,323 @@ public class Yylex implements java_cup.runtime.Scanner {
 					case -86:
 						break;
 					case 88:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -87:
 						break;
 					case 90:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -88:
 						break;
 					case 92:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -89:
 						break;
 					case 94:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -90:
 						break;
 					case 96:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -91:
 						break;
 					case 98:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -92:
 						break;
 					case 100:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -93:
 						break;
 					case 102:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -94:
 						break;
 					case 104:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -95:
 						break;
 					case 106:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -96:
 						break;
 					case 108:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -97:
 						break;
 					case 110:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -98:
 						break;
 					case 112:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -99:
 						break;
 					case 114:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -100:
 						break;
 					case 116:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -101:
 						break;
 					case 118:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -102:
 						break;
 					case 120:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -103:
 						break;
 					case 122:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -104:
 						break;
 					case 124:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -105:
 						break;
 					case 126:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -106:
 						break;
 					case 128:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -107:
 						break;
 					case 199:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -108:
 						break;
 					case 217:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -109:
 						break;
 					case 224:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -110:
 						break;
 					case 226:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -111:
 						break;
 					case 227:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -112:
 						break;
 					case 228:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -113:
 						break;
 					case 229:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -114:
 						break;
 					case 230:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -115:
 						break;
 					case 231:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -116:
 						break;
 					case 232:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -117:
 						break;
 					case 233:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -118:
 						break;
 					case 234:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -119:
 						break;
 					case 235:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -120:
 						break;
 					case 236:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -121:
 						break;
 					case 237:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -122:
 						break;
 					case 238:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -123:
 						break;
 					case 239:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -124:
 						break;
 					case 240:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -125:
 						break;
 					case 241:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -126:
 						break;
 					case 242:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -127:
 						break;
 					case 243:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -128:
 						break;
 					case 244:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -129:
 						break;
 					case 245:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -130:
 						break;
 					case 246:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -131:
 						break;
 					case 247:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -132:
 						break;
 					case 248:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -133:
 						break;
 					case 249:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -134:
 						break;
 					case 250:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -135:
 						break;
 					case 251:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -136:
 						break;
 					case 252:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -137:
 						break;
 					case 253:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -138:
 						break;
 					case 254:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -139:
 						break;
 					case 255:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -140:
 						break;
 					case 256:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -141:
 						break;
 					case 257:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -142:
 						break;
 					case 258:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -143:
 						break;
 					case 259:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -144:
 						break;
 					case 262:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -145:
 						break;
 					case 263:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -146:
 						break;
 					case 264:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -147:
 						break;
 					case 265:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -148:
 						break;
 					case 266:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -149:
 						break;
 					case 267:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -150:
 						break;
 					case 268:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -151:
 						break;
 					case 269:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -152:
 						break;
 					case 270:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -153:
 						break;
 					case 271:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -154:
 						break;
 					case 272:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -155:
 						break;
 					case 273:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -156:
 						break;
 					case 274:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -157:
 						break;
 					case 275:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -158:
 						break;
 					case 276:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -159:
 						break;
 					case 277:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -160:
 						break;
 					case 278:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -161:
 						break;
 					case 279:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -162:
 						break;
 					case 280:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -163:
 						break;
 					case 281:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -164:
 						break;
 					case 282:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -165:
 						break;
 					case 284:
-						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext() + "  at: (" + (yyline+1) + "," + (yychar+1) + ")  " + "value: -1"));}
+						{return new Symbol(sym.ID,new SymbolValue(yyline+1, yychar+1, yytext()));}
 					case -166:
 						break;
 					default:

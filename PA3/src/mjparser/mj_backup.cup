@@ -82,11 +82,11 @@ terminal SymbolValue THIS;
 terminal UMINUS;
 
 non terminal program;
-non terminal IExp exp;
-non terminal BlockStatement block_statement;
-non terminal IStatement statement;
-non terminal ArrayList<IStatement> statement_list;
-non terminal MainClass main_class;
+non terminal Integer exp;
+non terminal block_statement;
+non terminal statement;
+non terminal statement_list;
+non terminal main_class;
 
 /* Declare precedence and associativity  here */
 precedence left TIMES;
@@ -106,36 +106,50 @@ program ::=
     
 main_class ::=
         CLASS ID:name LBRACE PUBLIC STATIC VOID MAIN 
-		LPAREN STRING LBRACKET RBRACKET ID:param RPAREN block_statement:blk
+		LPAREN STRING LBRACKET RBRACKET ID:param RPAREN block_statement:list
           {:
-          	RESULT = new MainClass(0, 0, name.lexeme, param.lexeme, blk);
+          	RESULT = new MainClass(0, 0, name, param, (BlockStatement)list);
           :}
         RBRACE 
           {:
             parser.out.flush();
           :}
     ;
-    
+
 block_statement ::=
 	LBRACE statement_list:slist RBRACE
 	{: RESULT = new BlockStatement(0, 0, slist); :}
 	;
-	
+
 statement_list ::= statement_list:list statement:s
-	{: list.add(s);
-	 RESULT = list; :}
+	{: ArrayList<IStatement> l = (ArrayList<IStatement>)list; l.add((IStatement)s);
+	 RESULT = l; :}
 	 
 	| statement:s
-	{: ArrayList<IStatement> l = new ArrayList<IStatement>(); l.add(s); RESULT = l; :}
+	{: ArrayList<IStatement> l = new ArrayList<IStatement>(); l.add((IStatement)s); RESULT = l; :}
 	;
 	
 statement ::= MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI
 		{: RESULT = new MeggySetPixel(op.line, op.pos, a, b, c); :}
-		;
 		
+		;
+	
+
+/*
+statement_list ::= statement_list:list statement:s
+	{: if (s!=null) { list.add(s); }
+	 RESULT = list; :}
+	
+	| WHILE:op exp:e LBRACE statement_list:list RBRACE
+	 {: RESULT = new WhileStatement(op.line, op.pos, e, list); :}
+	 
+	;
+*/
+
 exp ::= TRUE:t
 		{: RESULT = new TrueLiteral(t.line, t.pos, "true", 1); :}
-		|exp:a PLUS:op exp:b
+
+/*exp:a PLUS:op exp:b
 		{: RESULT = new PlusExp(op.line, op.pos, a, b); :}
 		| exp:a MINUS:op exp:b
 		{: RESULT = new MinusExp(op.line, op.pos, a, b); :}
@@ -144,11 +158,13 @@ exp ::= TRUE:t
 		| MEGGYCHECKBUTTON:op LPAREN exp:e RPAREN
 		{: RESULT = new MeggyCheckButton(op.line, op.pos, e); :}
 		| INT_LITERAL:n
-		{: RESULT = new IntLiteral(n.line, n.pos, n.lexeme, n.value); :}
-		| FALSE:f
-		{: RESULT = new FalseLiteral(f.line, f.pos, f.lexeme, 0); :}
+		{: RESULT = new IntLiteral(op.line, op.pos, n, n); :}
+		*/
+	
+		
+		/*| FALSE:f
+		{: RESULT = new FalseLiteral(f.line, f.pos, 0); :}
 		| LPAREN BYTE:op RPAREN exp:e
 		{: RESULT = new ByteCast(op.line, op.pos, e); :}
+		*/
 		;
-
-
