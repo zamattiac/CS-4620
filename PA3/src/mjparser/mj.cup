@@ -146,7 +146,7 @@ exp ::= TRUE:t
 		| INT_LITERAL:n
 		{: RESULT = new IntLiteral(n.line, n.pos, n.lexeme, n.value); :}
 		| FALSE:f
-		{: RESULT = new FalseLiteral(f.line, f.pos, f.lexeme, 0); :}
+		{: RESULT = new FalseLiteral(f.line, f.pos, f.lexeme,  0); :}
 		| LPAREN BYTE:op RPAREN exp:e
 		{: RESULT = new ByteCast(op.line, op.pos, e); :}
 		;
