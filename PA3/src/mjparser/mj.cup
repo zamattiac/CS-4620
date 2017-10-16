@@ -133,7 +133,19 @@ statement ::= MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI
 		{: RESULT = new MeggySetPixel(op.line, op.pos, a, b, c); :}
 		;
 		
-exp ::= TRUE:t
+exp ::= LPAREN BYTE:op RPAREN exp:e
+		{: RESULT = new ByteCast(op.line, op.pos, e); :}
+		| INT_LITERAL:n
+		{: RESULT = new IntLiteral(n.line, n.pos, n.lexeme, n.value); :}
+		| COLOR_LITERAL:c
+		{: RESULT = new ColorLiteral(c.line, c.pos, c.lexeme, c.value); :}
+		
+		/*
+		| exp:a AND:op exp:b
+		{: RESULT = new AndExp(op.line, op.pos, a, b); :}
+		| NOT exp:a
+		{: RESULT = new NotExp(a.line, a.pos, a); :}
+		|TRUE:t
 		{: RESULT = new TrueLiteral(t.line, t.pos, "true", 1); :}
 		|exp:a PLUS:op exp:b
 		{: RESULT = new PlusExp(op.line, op.pos, a, b); :}
@@ -143,12 +155,9 @@ exp ::= TRUE:t
 		{: RESULT = new EqualExp(op.line, op.pos, a, b); :}
 		| MEGGYCHECKBUTTON:op LPAREN exp:e RPAREN
 		{: RESULT = new MeggyCheckButton(op.line, op.pos, e); :}
-		| INT_LITERAL:n
-		{: RESULT = new IntLiteral(n.line, n.pos, n.lexeme, n.value); :}
 		| FALSE:f
 		{: RESULT = new FalseLiteral(f.line, f.pos, f.lexeme,  0); :}
-		| LPAREN BYTE:op RPAREN exp:e
-		{: RESULT = new ByteCast(op.line, op.pos, e); :}
+		*/
 		;
 
 

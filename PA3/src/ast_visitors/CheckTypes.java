@@ -41,48 +41,72 @@ public class CheckTypes extends DepthFirstVisitor
        System.err.println("Node not implemented in CheckTypes, " + node.getClass());
    }
    
-   public void outAndExp(AndExp node)
-   {
-     if(this.mCurrentST.getExpType(node.getLExp()) != Type.BOOL) {
-       throw new SemanticException(
-         "Invalid left operand type for operator &&",
-         node.getLExp().getLine(), node.getLExp().getPos());
-     }
-
-     if(this.mCurrentST.getExpType(node.getRExp()) != Type.BOOL) {
-       throw new SemanticException(
-         "Invalid right operand type for operator &&",
-         node.getRExp().getLine(), node.getRExp().getPos());
-     }
-
-     this.mCurrentST.setExpType(node, Type.BOOL);
+   public void outByteCast(ByteCast node) {
+   		if (this.mCurrentST.getExpType(node.getExp()) != Type.BYTE && this.mCurrentST.getExpType(node.getExp()) != Type.INT) {
+   			throw new SemanticException(
+         "Invalid byte cast",
+         node.getExp().getLine(), node.getExp().getPos());
+   		}
    }
-  
-  public void outNotExp(NotExp node) {
-  	if (this.mCurrentST.getExpType(node.getExp()) != Type.BOOL) {
-  		throw new SemanticException(
-         "Invalid operand type for operator ~",
-         node.getLExp().getLine());
-  	}
-  	this.mCurrentST.setExpType(node, Type.BOOL);
-  }
-  
-   public void outPlusExp(PlusExp node)
-   {
-       Type lexpType = this.mCurrentST.getExpType(node.getLExp());
-       Type rexpType = this.mCurrentST.getExpType(node.getRExp());
-       if ((lexpType==Type.INT  || lexpType==Type.BYTE) &&
-           (rexpType==Type.INT  || rexpType==Type.BYTE)
-          ){
-           this.mCurrentST.setExpType(node, Type.INT);
-       } else {
-           throw new SemanticException(
-                   "Operands to + operator must be INT or BYTE",
-                   node.getLExp().getLine(),
-                   node.getLExp().getPos());
-       }
-
+   
+   public void outIntegerExp(IntLiteral node) {
+   		if (this.mCurrentST.getExpType(node.getExp()) != Type.BYTE && this.mCurrentST.getExpType(node.getExp()) != Type.INT) {
+   			throw new SemanticException(
+         "Invalid integer",
+         node.getExp().getLine(), node.getExp().getPos());
+   		}
    }
+   
+   public void outColorExp(ColorLiteral node) {
+   		if (this.mCurrentST.getExpType(node.getExp()) != Type.COLOR) {
+   			throw new SemanticException(
+         "Invalid color",
+         node.getExp().getLine(), node.getExp().getPos());
+   		}
+   }
+   
+//    public void outAndExp(AndExp node)
+//    {
+//      if(this.mCurrentST.getExpType(node.getLExp()) != Type.BOOL) {
+//        throw new SemanticException(
+//          "Invalid left operand type for operator &&",
+//          node.getLExp().getLine(), node.getLExp().getPos());
+//      }
+// 
+//      if(this.mCurrentST.getExpType(node.getRExp()) != Type.BOOL) {
+//        throw new SemanticException(
+//          "Invalid right operand type for operator &&",
+//          node.getRExp().getLine(), node.getRExp().getPos());
+//      }
+// 
+//      this.mCurrentST.setExpType(node, Type.BOOL);
+//    }
+//   
+//   public void outNotExp(NotExp node) {
+//   	if (this.mCurrentST.getExpType(node.getExp()) != Type.BOOL) {
+//   		throw new SemanticException(
+//          "Invalid operand type for operator ~",
+//          node.getLExp().getLine());
+//   	}
+//   	this.mCurrentST.setExpType(node, Type.BOOL);
+//   }
+//   
+//    public void outPlusExp(PlusExp node)
+//    {
+//        Type lexpType = this.mCurrentST.getExpType(node.getLExp());
+//        Type rexpType = this.mCurrentST.getExpType(node.getRExp());
+//        if ((lexpType==Type.INT  || lexpType==Type.BYTE) &&
+//            (rexpType==Type.INT  || rexpType==Type.BYTE)
+//           ){
+//            this.mCurrentST.setExpType(node, Type.INT);
+//        } else {
+//            throw new SemanticException(
+//                    "Operands to + operator must be INT or BYTE",
+//                    node.getLExp().getLine(),
+//                    node.getLExp().getPos());
+//        }
+// 
+//    }
   
 
 }
