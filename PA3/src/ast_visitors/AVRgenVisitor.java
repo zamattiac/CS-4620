@@ -18,13 +18,13 @@ import ast.node.*;
  * We override this method so that it
  * prints out dot info about a node.
  */
-public class DotVisitor extends DepthFirstVisitor {
+public class AVRgenVisitor extends DepthFirstVisitor {
    private int nodeCount = 0;
    private PrintWriter out;
    private Stack<Integer> nodeStack;
    
    /** Constructor takes a PrintWriter, and stores in instance var. */
-   public DotVisitor(PrintWriter out) {
+   public AVRgenVisitor(PrintWriter out) {
       this.out = out;
       this.nodeStack = new Stack<Integer>();
    }

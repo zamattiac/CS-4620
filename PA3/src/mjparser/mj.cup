@@ -81,11 +81,11 @@ terminal SymbolValue THIS;
 /* bogus terminal for unary precedence declaration */
 terminal UMINUS;
 
-non terminal program;
+non terminal Program program;
 non terminal IExp exp;
 non terminal BlockStatement block_statement;
 non terminal IStatement statement;
-non terminal ArrayList<IStatement> statement_list;
+non terminal List<IStatement> statement_list;
 non terminal MainClass main_class;
 
 /* Declare precedence and associativity  here */
@@ -101,7 +101,10 @@ precedence left EQUAL;
 start with program;
 
 program ::= 
-    IMPORT MEGGY SEMI main_class
+    IMPORT MEGGY SEMI main_class:m
+    {:
+    	RESULT = new Program(0, 0, m, new LinkedList<IClassDecl>());
+    :}
     ;
     
 main_class ::=
@@ -126,7 +129,7 @@ statement_list ::= statement_list:list statement:s
 	 RESULT = list; :}
 	 
 	| statement:s
-	{: ArrayList<IStatement> l = new ArrayList<IStatement>(); l.add(s); RESULT = l; :}
+	{:  List<IStatement> l = new LinkedList<IStatement>(); l.add(s); RESULT = l; :}
 	;
 	
 statement ::= MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI

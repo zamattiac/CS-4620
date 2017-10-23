@@ -10,10 +10,17 @@
  *
  */
 import java.io.FileReader;
+
+import java.io.FileWriter;
 import java.io.PrintWriter;
+// needed because we DON'T parse (see below)
+import java_cup.runtime.*;
 
 import mjparser.*;
-//import ast_visitors.*;
+import ast_visitors.*;
+import ast.node.*;
+import ast.visitor.*;
+import symtable.*;
 
 public class MJDriver {
 
@@ -38,65 +45,72 @@ public class MJDriver {
           // construct the lexer, 
           // the lexer will be the same for all of the parsers
           Yylex lexer = new Yylex(new FileReader(filename));
-
-          // create the parser
+          
           mj parser = new mj(lexer);
-          int lastInPath = filename.lastIndexOf('/');
-          parser.programName = filename.substring(lastInPath+1);
-          System.out.println("Driver finds input filename: " + parser.programName);
 
-          // and parse
-          parser.parse();
-          /*
-                
-          // print ast to file
-          java.io.PrintStream astout =
-            new java.io.PrintStream(
-                new java.io.FileOutputStream(filename + ".ast.dot"));
-          ast_root.accept(new DotVisitor(new PrintWriter(astout)));
-          System.out.println("Printing AST to " + filename + ".ast.dot");
+          ////  create the parser
+//           mj parser = new mj(lexer);
+//           int lastInPath = filename.lastIndexOf('/');
+//           parser.programName = filename.substring(lastInPath+1);
+//           System.out.println("Driver finds input filename: " + parser.programName);
 
-          // create the symbol table
-          BuildSymTable stVisitor = new BuildSymTable();
-          ast_root.accept(stVisitor);
-          symtable.SymTable globalST = stVisitor.getSymTable();
+          // and parse to ast
+          ast.node.Node ast_root = (ast.node.Node) parser.parse().value;
+     
+     		java.io.PrintStream astout = new java.io.PrintStream(filename + ".s.dot"); 
+			ast_root.accept(new DotVisitor(new PrintWriter(astout)));
+		
+			java.io.PrintStream avrsout = new java.io.PrintStream(filename + ".s"); 
+			ast_root.accept(new AVRgenVisitor(new PrintWriter(avrsout))); 
+			System.out.println("Printing Atmel assembly to " + filename + ".s");
+          //// print ast to file
+          // java.io.PrintStream astout =
+//             new java.io.PrintStream(
+//                 new java.io.FileOutputStream(filename + ".ast.dot"));
+//           ast_root.accept(new DotVisitor(new PrintWriter(astout)));
+//           System.out.println("Printing AST to " + filename + ".ast.dot");
+
+          // //create the symbol table
+//           BuildSymTable stVisitor = new BuildSymTable();
+//           ast_root.accept(stVisitor);
+//           symtable.SymTable globalST = stVisitor.getSymTable();
           
-          // print ast to file
-          java.io.PrintStream STout =
-            new java.io.PrintStream(
-                new java.io.FileOutputStream(filename + ".ST.dot"));
-          System.out.println("Printing symbol table to " + filename + ".ST.dot");
-          globalST.outputDot(STout);
+          // //print ast to file
+//           java.io.PrintStream STout =
+//             new java.io.PrintStream(
+//                 new java.io.FileOutputStream(filename + ".ST.dot"));
+//           System.out.println("Printing symbol table to " + filename + ".ST.dot");
+//           globalST.outputDot(STout);
                     
-          // perform type checking 
-          ast_root.accept(new CheckTypes(globalST));
+          // //perform type checking 
+//           ast_root.accept(new CheckTypes(globalST));
           
-          // Determine whether to do register allocation or not.
-          if ( args.length == 2 && args[0].equals("--regalloc") ) {
-              // trying out register allocation
-              AVRregAlloc regVisitor = new AVRregAlloc(globalST);
-              ast_root.accept(regVisitor);
-              
-              // print info about temps to a file
-              java.io.PrintStream asttempout =
-                  new java.io.PrintStream(
-                      new java.io.FileOutputStream(filename + ".ast.temp.dot"));
-                ast_root.accept(new DotVisitorWithMap(new PrintWriter(asttempout),
-                        regVisitor.getTempMap()));
-                System.out.println("Printing AST to " + filename + ".ast.temp.dot");
-            
-          } else {
-            // determine how to layout variables in AVR program
-            ast_root.accept(new AVRallocVars(globalST));
-          }
+          // //Determine whether to do register allocation or not.
+//           if ( args.length == 2 && args[0].equals("--regalloc") ) {
+//               //trying out register allocation
+//               AVRregAlloc regVisitor = new AVRregAlloc(globalST);
+//               ast_root.accept(regVisitor);
+//               
+//               //print info about temps to a file
+//               java.io.PrintStream asttempout =
+//                   new java.io.PrintStream(
+//                       new java.io.FileOutputStream(filename + ".ast.temp.dot"));
+//                 ast_root.accept(new DotVisitorWithMap(new PrintWriter(asttempout),
+//                         regVisitor.getTempMap()));
+//                 System.out.println("Printing AST to " + filename + ".ast.temp.dot");
+//             
+//           } else {
+//             //determine how to layout variables in AVR program
+//             ast_root.accept(new AVRallocVars(globalST));
+//           }
 
           // generate AVR code that evaluates the program
-          java.io.PrintStream avrsout =
-              new java.io.PrintStream(
-                      new java.io.FileOutputStream(filename + ".s"));
-          ast_root.accept(new AVRgenVisitor(new PrintWriter(avrsout),globalST));
-          System.out.println("Printing Atmel assembly to " + filename + ".s");
-          */
+          // java.io.PrintStream avrsout =
+//               new java.io.PrintStream(
+//                       new java.io.FileOutputStream(filename + ".s"));
+//           ast_root.accept(new AVRgenVisitor(new PrintWriter(avrsout),globalST));
+//           System.out.println("Printing Atmel assembly to " + filename + ".s");
+
 
         } catch(exceptions.SemanticException e) {
             System.err.println(e.getMessage());

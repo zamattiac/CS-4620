@@ -57,7 +57,8 @@ $(SCANNER).jar: $(SRC_DIR)/$(SCANNER)Driver.class
 	mv $(SRC_DIR)/$(SCANNER).jar .
 
 $(PROG).jar: $(SRC_DIR)/$(PROG)Driver.class
-	cd $(SRC_DIR); $(JAR) cmf $(PROG)MainClass.txt $(PROG).jar *.class */*.class avrH.rtl.s avrF.rtl.s -C $(JAVA_CUP_RUNTIME) java_cup  
+	cd $(SRC_DIR); $(JAR) cmf $(PROG)MainClass.txt $(PROG).jar ./  -C $(JAVA_CUP_RUNTIME) java_cup  
+	### *.class */*.class avrH.rtl.s avrF.rtl.s
 	cd ..
 	mv $(SRC_DIR)/$(PROG).jar .
 
