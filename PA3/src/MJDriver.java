@@ -47,7 +47,7 @@ public class MJDriver {
           Yylex lexer = new Yylex(new FileReader(filename));
           
           mj parser = new mj(lexer);
-
+		  //parser.debug_parse();
           ////  create the parser
 //           mj parser = new mj(lexer);
 //           int lastInPath = filename.lastIndexOf('/');
@@ -55,9 +55,9 @@ public class MJDriver {
 //           System.out.println("Driver finds input filename: " + parser.programName);
 
           // and parse to ast
-          ast.node.Node ast_root = (ast.node.Node) parser.parse().value;
+          ast.node.Node ast_root = (ast.node.Node) parser.debug_parse().value;
      
-     		java.io.PrintStream astout = new java.io.PrintStream(filename + ".s.dot"); 
+     		java.io.PrintStream astout = new java.io.PrintStream(filename + ".dot"); 
 			ast_root.accept(new DotVisitor(new PrintWriter(astout)));
 		
 			java.io.PrintStream avrsout = new java.io.PrintStream(filename + ".s"); 

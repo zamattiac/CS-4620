@@ -15,6 +15,8 @@ import ast.node.*;
 
 
 parser code {:
+
+    public PrintWriter out; 
     
     public String programName;
 
@@ -138,14 +140,6 @@ statement ::= MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI
 		{: 
 			RESULT = new MeggySetPixel(op.line, op.pos, a, b, c); 
 		:}
-		| MEGGYDELAY:op LPAREN exp:a RPAREN SEMI
-		{:
-			RESULT = new MeggyDelay(op.line, op.pos, a);
-		:}
-		| IF LPAREN exp:arg RPAREN block_statement:b
-		{:
-			
-		:}
 		;
 		
 exp ::= LPAREN BYTE:op RPAREN exp:e
@@ -154,6 +148,8 @@ exp ::= LPAREN BYTE:op RPAREN exp:e
 		{: RESULT = new IntLiteral(n.line, n.pos, n.lexeme, n.value); :}
 		| COLOR_LITERAL:c
 		{: RESULT = new ColorLiteral(c.line, c.pos, c.lexeme, c.value); :}
+		
+		/*
 		| exp:a AND:op exp:b
 		{: RESULT = new AndExp(op.line, op.pos, a, b); :}
 		| NOT exp:a
@@ -170,6 +166,7 @@ exp ::= LPAREN BYTE:op RPAREN exp:e
 		{: RESULT = new MeggyCheckButton(op.line, op.pos, e); :}
 		| FALSE:f
 		{: RESULT = new FalseLiteral(f.line, f.pos, f.lexeme,  0); :}
+		*/
 		;
 
 
