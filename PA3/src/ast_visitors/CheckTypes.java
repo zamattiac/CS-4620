@@ -203,7 +203,67 @@ public class CheckTypes extends DepthFirstVisitor
                     node.getLExp().getPos());
         }
     }
+
+	public void outMeggySetPixel(MeggySetPixel node)
+	{
+		Type xexpType = this.mCurrentST.getExpType(node.getXExp());
+		Type yexpType = this.mCurrentST.getExpType(node.getYExp());
+		Type cexpType = this.mCurrentST.getExpType(node.getColor());
+		if ((xexpType != Type.INT & xexpType != Type.BYTE) &
+			(yexpType != Type.INT & yexpType != Type.BYTE)) 
+			{ throw new SemanticException(
+					"Parameter for MeggySetPixel must be of type INT or BYTE",
+					node.getXExp().getLine(),
+					node.getXExp().getPos());
+			}
+		if ((cexpType != Type.COLOR)) {
+			throw new SemanticException(
+					"Parameter for MeggySetPixel must be of type COLOR",
+					node.getColor().getLine(),
+					node.getColor().getPos());
+			}
+	}
+	
+	public void outMeggyDelay(MeggyDelay node) {
+		if ((this.mCurrentST.getExpType(node.getExp()) != Type.INT) &
+			 (this.mCurrentST.getExpType(node.getExp()) != Type.BYTE)) 
+		{
+			 throw new SemanticException(
+			 "Parameter for MeggyDelay must be of type INT or BYTE",
+			 node.getExp().getLine(),
+			 node.getExp().getPos());
+			 }
+		}
+		
+	public void outIfStatement(IfStatement node) {
+		if (this.mCurrentST.getExpType(node.getExp()) != Type.BOOL) 
+		{
+			throw new SemanticException(
+			"Parameter for IfStatement must be of type BOOL",
+			node.getExp().getLine(),
+			node.getExp().getPos());
+			}
+	}
+	
+	public void outWhileStatement(WhileStatement node) {
+		if (this.mCurrentST.getExpType(node.getExp()) != Type.BOOL) 
+		{
+			throw new SemanticException(
+			"Parameter for WhileStatement must be of type BOOL",
+			node.getExp().getLine(),
+			node.getExp().getPos());
+			}
+		}
     
+    public void outBlockStatement(BlockStatement node) {
+    	}
+    	
+    public void outMainClass(MainClass node) {
+    	}
+    	
+    public void outProgram(Program node) {
+    	}
+    	
   
 
 }

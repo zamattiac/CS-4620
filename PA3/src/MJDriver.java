@@ -62,6 +62,7 @@ public class MJDriver {
      
      		java.io.PrintStream astout = new java.io.PrintStream(filename + ".dot"); 
 			ast_root.accept(new DotVisitor(new PrintWriter(astout)));
+			System.out.println("Printing AST to " + filename + ".dot");
 		
 			java.io.PrintStream avrsout = new java.io.PrintStream(filename + ".s"); 
 			ast_root.accept(new AVRgenVisitor(new PrintWriter(avrsout))); 

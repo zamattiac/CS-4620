@@ -4,12 +4,18 @@ digraph ASTGraph {
 0 -> 1
 2 [ label="BlockStatement" ];
 1 -> 2
-3 [ label="MeggySetPixel" ];
+3 [ label="WhileStatement" ];
 2 -> 3
-4 [ label="IntLiteral\na" ];
+4 [ label="TrueLiteral\ntrue" ];
 3 -> 4
-5 [ label="IntLiteral\na" ];
+5 [ label="BlockStatement" ];
 3 -> 5
-6 [ label="IntLiteral\na" ];
-3 -> 6
+6 [ label="MeggyDelay" ];
+5 -> 6
+7 [ label="MinusExp" ];
+6 -> 7
+8 [ label="IntLiteral\n2" ];
+7 -> 8
+9 [ label="IntLiteral\n6" ];
+7 -> 9
 }
