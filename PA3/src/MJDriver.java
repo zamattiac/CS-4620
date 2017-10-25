@@ -57,6 +57,9 @@ public class MJDriver {
           // and parse to ast
           ast.node.Node ast_root = (ast.node.Node) parser.parse().value;
      
+     	// Type checker
+     	  ast_root.accept(new CheckTypes(new SymTable()));
+     
      		java.io.PrintStream astout = new java.io.PrintStream(filename + ".dot"); 
 			ast_root.accept(new DotVisitor(new PrintWriter(astout)));
 		
