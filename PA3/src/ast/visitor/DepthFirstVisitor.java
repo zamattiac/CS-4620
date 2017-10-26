@@ -485,6 +485,9 @@ public class DepthFirstVisitor extends Visitor
     {
         defaultOut(node);
     }
+    
+    public void jumpIfStatement(IfStatement node) {}
+    public void jumpOutIfStatement(IfStatement node) {}
 
     @Override
     public void visitIfStatement(IfStatement node)
@@ -494,10 +497,14 @@ public class DepthFirstVisitor extends Visitor
         {
             node.getExp().accept(this);
         }
+        // Place the labels for statement == true or false
+        jumpIfStatement(node);
         if(node.getThenStatement() != null)
         {
             node.getThenStatement().accept(this);
         }
+        // Place the label to jump over else to the end of the statement
+        jumpOutIfStatement(node);
         if(node.getElseStatement() != null)
         {
             node.getElseStatement().accept(this);
@@ -1153,11 +1160,17 @@ public class DepthFirstVisitor extends Visitor
         {
             node.getExp().accept(this);
         }
+        middleWhileStatement(node);
         if(node.getStatement() != null)
         {
             node.getStatement().accept(this);
         }
         outWhileStatement(node);
+    }
+    
+    // For managing the jumps
+    public void middleWhileStatement(WhileStatement node) {
+    	defaultIn(node);
     }
 
 }

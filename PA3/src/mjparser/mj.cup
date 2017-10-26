@@ -108,18 +108,23 @@ program ::=
     ;
     
 main_class ::=
-        CLASS ID:name LBRACE PUBLIC STATIC VOID MAIN 
+        CLASS:c ID:name LBRACE PUBLIC STATIC VOID MAIN 
 		LPAREN STRING LBRACKET RBRACKET ID:param RPAREN block_statement:blk
           {:
-          	RESULT = new MainClass(0, 0, name.lexeme, param.lexeme, blk);
+          	RESULT = new MainClass(c.line, c.pos, name.lexeme, param.lexeme, blk);
           :}
         RBRACE 
     ;
     
 block_statement ::=
-	LBRACE statement_list:slist RBRACE
+	LBRACE:l statement_list:slist RBRACE
 	{: 
-		RESULT = new BlockStatement(0, 0, slist); 
+		RESULT = new BlockStatement(l.line, l.pos, slist); 
+	:}
+	
+	| LBRACE:l RBRACE
+	{:
+		RESULT = new BlockStatement(l.line, l.pos, new LinkedList<IStatement>());
 	:}
 	;
 	

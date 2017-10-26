@@ -92,19 +92,21 @@ public class CheckTypes extends DepthFirstVisitor
     
     public void outEqualExp(EqualExp node)
     {
-      if(this.mCurrentST.getExpType(node.getLExp()) != Type.BOOL) {
-        throw new SemanticException(
-          "Invalid left operand type for operator ==",
-          node.getLExp().getLine(), 
-          node.getLExp().getPos());
+      if(((this.mCurrentST.getExpType(node.getLExp()) == Type.BOOL) &
+	 (this.mCurrentST.getExpType(node.getRExp()) == Type.BOOL)) ||
+	 ((this.mCurrentST.getExpType(node.getLExp()) == Type.INT) &
+	 (this.mCurrentST.getExpType(node.getRExp()) == Type.INT)) ||
+	 ((this.mCurrentST.getExpType(node.getLExp()) == Type.BYTE) &
+	 (this.mCurrentST.getExpType(node.getRExp()) == Type.BYTE)) ||
+	 ((this.mCurrentST.getExpType(node.getLExp()) ==Type.BUTTON) &
+	 (this.mCurrentST.getExpType(node.getRExp()) == Type.BUTTON)) ||
+	 ((this.mCurrentST.getExpType(node.getLExp()) == Type.COLOR) &
+	 (this.mCurrentST.getExpType(node.getRExp()) == Type.COLOR))) {
+	        throw new SemanticException(
+          "Invalid operands aren't of the same type for operator ==",
+          node.getLExp().getLine(), node.getLExp().getPos());
       }
  
-      if(this.mCurrentST.getExpType(node.getRExp()) != Type.BOOL) {
-        throw new SemanticException(
-          "Invalid right operand type for operator &&",
-          node.getRExp().getLine(), 
-          node.getRExp().getPos());
-      }
  
       this.mCurrentST.setExpType(node, Type.BOOL);
     }
