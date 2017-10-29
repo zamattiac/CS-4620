@@ -87,13 +87,13 @@ non terminal List<IStatement> statement_list;
 non terminal MainClass main_class;
 
 /* Declare precedence and associativity  here */
-precedence left TIMES;
 precedence right UMINUS;
 
-precedence left PLUS;
-precedence left MINUS;
-precedence left EQUAL;
+precedence right EQUAL;
 precedence left TIMES;
+precedence left PLUS, MINUS;
+precedence right BYTE;
+
 precedence left AND;
 
 
@@ -106,7 +106,7 @@ program ::=
     	RESULT = new Program(0, 0, m, new LinkedList<IClassDecl>());
     :}
     ;
-    
+	
 main_class ::=
         CLASS:c ID:name LBRACE PUBLIC STATIC VOID MAIN 
 		LPAREN STRING LBRACKET RBRACKET ID:param RPAREN block_statement:blk
@@ -121,7 +121,7 @@ block_statement ::=
 	{: 
 		RESULT = new BlockStatement(l.line, l.pos, slist); 
 	:}
-	
+		
 	| LBRACE:l RBRACE
 	{:
 		RESULT = new BlockStatement(l.line, l.pos, new LinkedList<IStatement>());
@@ -136,7 +136,7 @@ statement_list ::= statement_list:list statement:s
 	| statement:s
 	{:  
 		List<IStatement> l = new LinkedList<IStatement>(); 
-		l.add(s); 
+		if (s != null) l.add(s); 
 		RESULT = l; 
 	:}
 	;
@@ -161,22 +161,14 @@ statement ::= MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI
 		{:
 			RESULT = new WhileStatement(op.line, op.pos, arg, b);
 		:}
-		;
+		;	
 		
-		
-		
-exp ::= LPAREN BYTE:op RPAREN exp:e
+exp ::= BYTE:op exp:e
 		{: RESULT = new ByteCast(op.line, op.pos, e); :}
 		| INT_LITERAL:n
 		{: RESULT = new IntLiteral(n.line, n.pos, n.lexeme, n.value); :}
 		| COLOR_LITERAL:c
 		{: RESULT = new ColorLiteral(c.line, c.pos, c.lexeme, c.value); :}
-		| exp:a AND:op exp:b
-		{: RESULT = new AndExp(op.line, op.pos, a, b); :}
-		| NOT:n exp:a
-		{: RESULT = new NotExp(n.line, n.pos, a); :}
-		| TRUE:t
-		{: RESULT = new TrueLiteral(t.line, t.pos, "true", 1); :}
 		| exp:a PLUS:op exp:b
 		{: RESULT = new PlusExp(op.line, op.pos, a, b); :}
 		| exp:a MINUS:op exp:b
@@ -185,6 +177,14 @@ exp ::= LPAREN BYTE:op RPAREN exp:e
 		{: RESULT = new EqualExp(op.line, op.pos, a, b); :}
 		| MEGGYCHECKBUTTON:op LPAREN exp:e RPAREN
 		{: RESULT = new MeggyCheckButton(op.line, op.pos, e); :}
+		| LPAREN exp:a RPAREN
+		{: RESULT = a; :}
+		| exp:a AND:op exp:b
+		{: RESULT = new AndExp(op.line, op.pos, a, b); :}
+		| NOT:n exp:a
+		{: RESULT = new NotExp(n.line, n.pos, a); :}
+		| TRUE:t
+		{: RESULT = new TrueLiteral(t.line, t.pos, "true", 1); :}
 		| FALSE:f
 		{: RESULT = new FalseLiteral(f.line, f.pos, f.lexeme,  0); :}
 		| exp:a TIMES:op exp:b
@@ -195,7 +195,5 @@ exp ::= LPAREN BYTE:op RPAREN exp:e
 		{: RESULT = new ButtonLiteral(b.line, b.pos, b.lexeme, b.value); :}
 		| MINUS:m exp:a
 		{: RESULT = new NegExp(m.line, m.pos, a); :}
-		| LPAREN exp:a RPAREN
-		{: RESULT = a; :}
 		;
 

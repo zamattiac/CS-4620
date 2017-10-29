@@ -92,16 +92,14 @@ public class CheckTypes extends DepthFirstVisitor
     
     public void outEqualExp(EqualExp node)
     {
-      if(((this.mCurrentST.getExpType(node.getLExp()) == Type.BOOL) &
+      if (!(((this.mCurrentST.getExpType(node.getLExp()) == Type.BOOL) &
 	 (this.mCurrentST.getExpType(node.getRExp()) == Type.BOOL)) ||
-	 ((this.mCurrentST.getExpType(node.getLExp()) == Type.INT) &
-	 (this.mCurrentST.getExpType(node.getRExp()) == Type.INT)) ||
-	 ((this.mCurrentST.getExpType(node.getLExp()) == Type.BYTE) &
+		 ((this.mCurrentST.getExpType(node.getLExp()) == Type.BYTE) &
 	 (this.mCurrentST.getExpType(node.getRExp()) == Type.BYTE)) ||
 	 ((this.mCurrentST.getExpType(node.getLExp()) ==Type.BUTTON) &
 	 (this.mCurrentST.getExpType(node.getRExp()) == Type.BUTTON)) ||
 	 ((this.mCurrentST.getExpType(node.getLExp()) == Type.COLOR) &
-	 (this.mCurrentST.getExpType(node.getRExp()) == Type.COLOR))) {
+	 (this.mCurrentST.getExpType(node.getRExp()) == Type.COLOR)))) {
 	        throw new SemanticException(
           "Invalid operands aren't of the same type for operator ==",
           node.getLExp().getLine(), node.getLExp().getPos());
@@ -162,7 +160,7 @@ public class CheckTypes extends DepthFirstVisitor
         Type lexpType = this.mCurrentST.getExpType(node.getLExp());
         Type rexpType = this.mCurrentST.getExpType(node.getRExp());
         if ((lexpType==Type.INT  || lexpType==Type.BYTE) &&
-            (rexpType==Type.INT  || rexpType==Type.BYTE)
+            (rexpType==Type.INT || rexpType==Type.BYTE)
            ){
             this.mCurrentST.setExpType(node, Type.INT);
         } else {
@@ -194,16 +192,17 @@ public class CheckTypes extends DepthFirstVisitor
     {
         Type lexpType = this.mCurrentST.getExpType(node.getLExp());
         Type rexpType = this.mCurrentST.getExpType(node.getRExp());
-        if ((lexpType==Type.INT  || lexpType==Type.BYTE) &&
-            (rexpType==Type.INT  || rexpType==Type.BYTE)
+        if ((lexpType==Type.BYTE) &&
+            (rexpType==Type.BYTE)
            ){
             this.mCurrentST.setExpType(node, Type.INT);
         } else {
             throw new SemanticException(
-                    "Operands to * operator must be INT or BYTE",
+                    "Operands to * operator must be BYTE",
                     node.getLExp().getLine(),
                     node.getLExp().getPos());
         }
+        this.mCurrentST.setExpType(node, Type.INT);
     }
 
 	public void outMeggySetPixel(MeggySetPixel node)
@@ -211,10 +210,10 @@ public class CheckTypes extends DepthFirstVisitor
 		Type xexpType = this.mCurrentST.getExpType(node.getXExp());
 		Type yexpType = this.mCurrentST.getExpType(node.getYExp());
 		Type cexpType = this.mCurrentST.getExpType(node.getColor());
-		if ((xexpType != Type.INT & xexpType != Type.BYTE) &
-			(yexpType != Type.INT & yexpType != Type.BYTE)) 
+		if ((xexpType != Type.BYTE) &
+			(yexpType != Type.BYTE)) 
 			{ throw new SemanticException(
-					"Parameter for MeggySetPixel must be of type INT or BYTE",
+					"Parameter for MeggySetPixel must be of type BYTE",
 					node.getXExp().getLine(),
 					node.getXExp().getPos());
 			}
@@ -227,11 +226,10 @@ public class CheckTypes extends DepthFirstVisitor
 	}
 	
 	public void outMeggyDelay(MeggyDelay node) {
-		if ((this.mCurrentST.getExpType(node.getExp()) != Type.INT) &
-			 (this.mCurrentST.getExpType(node.getExp()) != Type.BYTE)) 
+		if ((this.mCurrentST.getExpType(node.getExp()) != Type.INT)) 
 		{
 			 throw new SemanticException(
-			 "Parameter for MeggyDelay must be of type INT or BYTE",
+			 "Parameter for MeggyDelay must be of type INT",
 			 node.getExp().getLine(),
 			 node.getExp().getPos());
 			 }

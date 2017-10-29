@@ -56,7 +56,7 @@ EOL=(\r|\n|\r\n)
 "main"         {return new Symbol(sym.MAIN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 "boolean"         {return new Symbol(sym.BOOLEAN,new SymbolValue(yyline+1, yychar+1, yytext()));}
 "int"         {return new Symbol(sym.INT,new SymbolValue(yyline+1, yychar+1, yytext()));}
-"byte"         {return new Symbol(sym.BYTE,new SymbolValue(yyline+1, yychar+1, yytext()));}
+"(byte)"         {return new Symbol(sym.BYTE,new SymbolValue(yyline+1, yychar+1, yytext()));}
 "false"         {return new Symbol(sym.FALSE,new SymbolValue(yyline+1, yychar+1, yytext(), 0));}
 "if"         {return new Symbol(sym.IF,new SymbolValue(yyline+1, yychar+1, yytext()));}
 "else"         {return new Symbol(sym.ELSE,new SymbolValue(yyline+1, yychar+1, yytext()));}

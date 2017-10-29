@@ -507,15 +507,28 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	}
 	
 	public void outMeggyGetPixel(MeggyGetPixel node) {
+// 	    print("### GET PIXEL");
+// 	    print("###     # Load constant int 0");
+//         print("ldi    r24,lo8(0)");
+//         print("ldi    r25,hi8(0)");
+//         print("# push two byte expression onto stack");
+//         print("push   r25");
+//         print("push   r24");
+//         print("");
+//         print("# Load constant int 0");
+//         print("ldi    r24,lo8(0)");
+//         print("ldi    r25,hi8(0)");
+//         print("# push two byte expression onto stack");
+//         print("push   r25");
+//         print("push   r24");
+//         print("");
 	    print("### Meggy.getPixel(x,y) call");
         print("# load a one byte expression off stack");
         print("pop    r22");
-        print("pop	  r23");
-        print("ldi r23, 0");
+        print("ldi r22, lo8(4)");
         print("# load a one byte expression off stack");
         print("pop    r24");
-        print("pop 	  r25");
-        print("ldi r25, 0");
+        print("ldi r24, lo8(4)");
         print("call   _Z6ReadPxhh");
         print("# push one byte expression onto stack");
         print("push   r24");

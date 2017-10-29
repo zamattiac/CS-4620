@@ -7,7 +7,6 @@
 package ast_visitors;
 
 import java.io.PrintWriter;
-import java.util.Stack;
 
 import java.io.*;
 import java.lang.*;
@@ -15,6 +14,14 @@ import java.lang.*;
 import ast.visitor.DepthFirstVisitor;
 import ast.node.*;
 
+import ast.node.*;
+import ast.visitor.DepthFirstVisitor;
+import java.util.*;
+
+import symtable.SymTable;
+import symtable.Type;
+import exceptions.InternalException;
+import exceptions.SemanticException;
 /**
  * We extend the DepthFirstAdapter.  
  * Visitors invoke a defaultCase method on each node they visit.  
@@ -25,7 +32,6 @@ public class AVRgenVisitor extends DepthFirstVisitor {
    private int nodeCount = 0;
    // Assembly jump labels
    private int labelCount = 0;
-   private Stack<String> labels = new Stack<String>();
    private PrintWriter out;
    private Stack<Integer> nodeStack;
    
@@ -102,7 +108,8 @@ public class AVRgenVisitor extends DepthFirstVisitor {
    }
    
    public void outMainClass(MainClass node) {
-	  if (nodeStack.empty() && notPrinted) {
+	  //if (nodeStack.empty() && notPrinted) {
+	  if (notPrinted) {
 		System.out.println("Generate epilog using avrF.rtl.s");
 		InputStream mainPrologue=null;
 		BufferedReader reader=null;
@@ -151,32 +158,30 @@ public class AVRgenVisitor extends DepthFirstVisitor {
    		print("# End of block");
    }
 
+	// ONLY ACCEPTS BYTE
 	public void outMeggySetPixel(MeggySetPixel node) {
-		// Pop the bytes from color, y, x into the param registers
-		// r25 is used as a dummy register for the high bytes of each value (= 0)
-		print("/* Meggy Set Pixel */");
-		print("pop r20");
-		print("pop r25");
-		print("pop r22");
-		print("pop r25");
-		print("pop r24");	
-		print("pop r25");	
-// 		out.println("ldi r24, lo8(" + node.getXExp() + ")");
-// 		out.println("ldi r22, lo8(" + node.getYExp() + ")");
-// 		out.println("ldi r20, lo8(" + node.getColor() + ")");
-		print("call   _Z6DrawPxhhh");
-    	print("call   _Z12DisplaySlatev");
-	}
-	
-	public void outMeggyDelay(MeggyDelay node) {
-		// Pop the bytes from color, y, x into the param registers
-		// r25 is used as a dummy register for the high bytes of each value (= 0)
-		print("### Meggy Delay function");
-		print("# Load parameter - 2 byte expression off stack");
+		print("### Meggy.setPixel(x,y,color) call");
+		print("# load a one byte expression off stack");
+		print("pop    r20");
+		print("# load a one byte expression off stack");
+		print("pop    r22");
+		print("# load a one byte expression off stack");
 		print("pop    r24");
-    	print("pop    r25");
-    	print("call   _Z8delay_msj");
+		print("call   _Z6DrawPxhhh");
+		print("call   _Z12DisplaySlatev");
+		print("");
+	}
 
+	
+	// ONLY ACCEPTS INT
+	public void outMeggyDelay(MeggyDelay node) {
+		print("### Meggy.delay() call");
+		print("# load delay parameter");
+		print("# load a two byte expression off stack");
+		print("pop    r24");
+		print("pop    r25");
+		print("call   _Z8delay_msj");
+		print("");
 	}
 	
 	/*
@@ -185,16 +190,20 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		
 	*/
 	
-	public void inWhileStatement(WhileStatement node) {
-		String l0 = getLabel();
+	
+	// WHILE STATEMENT
+	
+	public void visitWhileStatement(WhileStatement node)
+    {
+        String l0 = getLabel();
 		// Save beginning to jump back to in outWhileStatement
-		labels.push(l0);
 		print("#### while statement");
 		printLabel(l0);
 		print("");
-	}
-	
-	public void middleWhileStatement(WhileStatement node) {
+        if(node.getExp() != null)
+        {
+            node.getExp().accept(this);
+        }
 		String l1 = getLabel();
 		// End of while loop
 		String l2 = getLabel();
@@ -212,13 +221,10 @@ public class AVRgenVisitor extends DepthFirstVisitor {
         print("# while loop body");
         printLabel(l1);
         print("");
-        
-        labels.push(l2);
-	}
-	
-	public void outWhileStatement(WhileStatement node) {
-		String l2 = labels.pop();
-		String l0 = labels.pop();
+        if(node.getStatement() != null)
+        {
+            node.getStatement().accept(this);
+        }
 		print("# jump to while test");
 		// L0
 		print("jmp    MJ_L" + l0);
@@ -227,14 +233,20 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		// L2
 		printLabel(l2);
 		print("");
-	}
+    }
 	
-	public void inIfStatement(IfStatement node) {
-		print("#### if statement");
+	
+	// IF STATEMENT
+	
+    public void visitIfStatement(IfStatement node)
+    {
+        print("#### if statement");
         print("");
-	}
-	
-	public void jumpIfStatement(IfStatement node) {
+        if(node.getExp() != null)
+        {
+            node.getExp().accept(this);
+        }
+        // Place the labels for statement == true or false
 		// Else
 		String l0 = getLabel();
 		// Then
@@ -254,54 +266,75 @@ public class AVRgenVisitor extends DepthFirstVisitor {
         print("# then label for if");
         printLabel(l1);
         print("");
-        
-        labels.push(l0);
-	}
-	
-	public void jumpOutIfStatement(IfStatement node) {
+        if(node.getThenStatement() != null)
+        {
+            node.getThenStatement().accept(this);
+        }
+        // Place the label to jump over else to the end of the statement
         // End of if statement
-        String l0 = labels.pop();
         String l2 = getLabel();
         
         print("jmp MJ_L" + l2);
         print("");
         print("# else label for if");
         printLabel(l0);
-        
-        labels.push(l2);
-	}
-	
-	public void outIfStatement(IfStatement node) {
-		String l2 = labels.pop();
+
+        if(node.getElseStatement() != null)
+        {
+            node.getElseStatement().accept(this);
+        }
 		print("# done label for if");
 		printLabel(l2);
-	}
-	
-	
-// 	public void outIfStatement(IfStatement node) {
-// 		// Pop the bytes from color, y, x into the param registers
-// 		// r25 is used as a dummy register for the high bytes of each value (= 0)
-// 		print("### Meggy Delay function");
-// 		print("# Load parameter - 2 byte expression off stack");
-// 		print("pop    r24");
-//     	print("pop    r25");
-//     	print("call   _Z8delay_msj");
-// 
-// 	}
+    }
 
+	
+	
 /*
 
 		Logical / mathematical operations
 
 */
+
+	// Promotes bytes to ints
 	public void outPlusExp(PlusExp node) {
         print("# ADD");
-        print("# load a two byte expression off stack");
-        print("pop    r18");
-        print("pop    r19");
-        print("# load a two byte expression off stack");
-        print("pop    r24");
-        print("pop    r25");
+        if (node.getLExp() instanceof ByteCast) {
+        	String l4 = getLabel();
+        	String l5 = getLabel();
+        	print("pop	r18");
+        	print("# promoting a byte to an int");
+			print("tst     r18");
+			print("brlt     MJ_L" + l4);
+			print("ldi    r19, 0");
+			print("jmp    MJ_L" + l5);
+			printLabel(l4);
+			print("ldi    r19, hi8(-1)");
+			printLabel(l5);
+        }
+        else {
+            print("# load a two byte expression off stack");
+        	print("pop    r18");
+        	print("pop    r19");
+
+        }
+        if (node.getRExp() instanceof ByteCast) {
+        	String l4 = getLabel();
+        	String l5 = getLabel();
+        	print("pop	r24");
+        	print("# promoting a byte to an int");
+			print("tst     r24");
+			print("brlt     MJ_L" + l4);
+			print("ldi    r25, 0");
+			print("jmp    MJ_L" + l5);
+			printLabel(l4);
+			print("ldi    r25, hi8(-1)");
+			printLabel(l5);
+        }
+        else {
+            print("# load a two byte expression off stack");
+        	print("pop    r24");
+        	print("pop    r25");
+        }
 		print("# Do add operation");
 		print("add    r24, r18");
 		print("adc    r25, r19");
@@ -311,15 +344,48 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("");
 	}
 	
+
+	// RESULT IS INT
 	public void outMinusExp(MinusExp node) {
-		print("# SUBTRACT");
-		print("# load a two byte expression off stack");
-        print("pop    r18");
-        print("pop    r19");
-        print("# load a two byte expression off stack");
-        print("pop    r24");
-        print("pop    r25");
-		print("# Do INT sub operation");
+        print("# SUBTRACT");
+        if (node.getLExp() instanceof ByteCast) {
+        	String l4 = getLabel();
+        	String l5 = getLabel();
+        	print("pop	r18");
+        	print("# promoting a byte to an int");
+			print("tst     r18");
+			print("brlt     MJ_L" + l4);
+			print("ldi    r19, 0");
+			print("jmp    MJ_L" + l5);
+			printLabel(l4);
+			print("ldi    r19, hi8(-1)");
+			printLabel(l5);
+        }
+        else {
+            print("# load a two byte expression off stack");
+        	print("pop    r18");
+        	print("pop    r19");
+
+        }
+        if (node.getRExp() instanceof ByteCast) {
+        	String l4 = getLabel();
+        	String l5 = getLabel();
+        	print("pop	r24");
+        	print("# promoting a byte to an int");
+			print("tst     r24");
+			print("brlt     MJ_L" + l4);
+			print("ldi    r25, 0");
+			print("jmp    MJ_L" + l5);
+			printLabel(l4);
+			print("ldi    r25, hi8(-1)");
+			printLabel(l5);
+        }
+        else {
+            print("# load a two byte expression off stack");
+        	print("pop    r24");
+        	print("pop    r25");
+        }
+        print("# Do INT sub operation");
 		print("sub    r24, r18");
 		print("sbc    r25, r19");
 		print("# push hi order byte first");
@@ -327,8 +393,12 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("push   r25");
 		print("push   r24");
 		print("");
+
 	}
 
+
+	// BYTE * BYTE ONLY
+	// RESULT IS INT
 	public void outMulExp(MulExp node) {
 		print("# MulExp");
 		print("# load a one byte expression off stack");
@@ -351,19 +421,17 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("");
 	}
 
+	// BYTE ONLY -> BOOLEAN
 	public void outEqualExp(EqualExp node) {
 		String l3 = getLabel();
 		String l4 = getLabel();
 		String l5 = getLabel();
 		print("# equality check expression");
-		print("# load a two byte expression off stack");
+		print("# load a one byte expression off stack");
 		print("pop    r18");
-		print("pop    r19");
-		print("# load a two byte expression off stack");
+		print("# load a one byte expression off stack");
 		print("pop    r24");
-		print("pop    r25");
 		print("cp    r24, r18");
-		print("cpc   r25, r19");
 		print("breq MJ_L" + l4);
 		print("");
 		print("# result is false");
@@ -380,14 +448,46 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("# push one byte expression onto stack");
 		print("push   r24");
 		print("");
-		print("# load condition and branch if false");
+
+	}
+	
+	
+	public void visitAndExp(AndExp node) {
+		String l3 = getLabel();
+		String l4 = getLabel();
+		print("#### short-circuited && operation");
+		print("# &&: left operand");
+		print("");
+        if(node.getLExp() != null)
+        {
+            node.getLExp().accept(this);
+        }
+		print("# &&: if left operand is false do not eval right");
 		print("# load a one byte expression off stack");
 		print("pop    r24");
-		print("#load zero into reg");
-		print("ldi    r25, 0");
+		print("# push one byte expression onto stack");
+		print("push   r24");
+		print("# compare left exp with zero");
+		print("ldi r25, 0");
+		print("cp    r24, r25");
+		print("# Want this, breq MJ_L" + l3);
+		print("brne  MJ_L" + l4);
+		print("jmp   MJ_L" + l3);
 		print("");
-		print("#use cp to set SREG");
-		print("cp     r24, r25");
+		printLabel(l4);
+		print("# right operand");
+		print("# load a one byte expression off stack");
+		print("pop    r24");
+		print("");
+        if(node.getRExp() != null)
+        {
+            node.getRExp().accept(this);
+        }		print("# load a one byte expression off stack");
+		print("pop    r24");
+		print("# push one byte expression onto stack");
+		print("push   r24");
+		print("");
+		printLabel(l3);
 		print("");
 	}
 
@@ -450,37 +550,43 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 
 	
 	public void outByteCast(ByteCast node) {
-		// pop the int off the stack, place the lower byte back on
-		print("/* Byte cast */");
-		print("pop r24");
-		print("pop r25");
-		print("ldi r25, lo8(0)");
-		print("push r25");
-		print("push r24");
+		if (node.getExp() instanceof ByteCast) return;
+		print("# Casting int to byte by popping");
+		print("# 2 bytes off stack and only pushing low order bits");
+		print("# back on.  Low order bits are on top of stack.");
+		print("pop    r24");
+		print("pop    r25");
+		print("push   r24");
 		print("");
+
 	}
 	
 	public void outNotExp(NotExp node) {
-		print("# Not operation");
-		print("pop r24");
-		print("ldi r22, 1");
-		print("eor r24, r22");
-		print("push r24");						
+		print("# not operation");
+		print("# load a one byte expression off stack");
+		print("pop    r24");
+		print("ldi     r22, 1");
+		print("eor     r24,r22");
+		print("# push one byte expression onto stack");
+		print("push   r24");
+		print("");
+					
 	}
 	
 	public void outNegExp(NegExp node) {
-		print("	# neg int");
+		print("# neg int");
 		print("# load a two byte expression off stack");
-		print("pop r24");
-		print("pop r25");
-		print("ldi r22, 0");
-		print("ldi r23, 0");
-		print("sub r22, r24");
-		print("sbc r23, r25");
+		print("pop    r24");
+		print("pop    r25");
+		print("ldi     r22, 0");
+		print("ldi     r23, 0");
+		print("sub     r22, r24");
+		print("sbc     r23, r25");
 		print("# push two byte expression onto stack");
 		print("push   r23");
 		print("push   r22");
 		print("");
+
 	}
 	
 	public void inMeggyCheckButton(MeggyCheckButton node) {
@@ -507,32 +613,15 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	}
 	
 	public void outMeggyGetPixel(MeggyGetPixel node) {
-// 	    print("### GET PIXEL");
-// 	    print("###     # Load constant int 0");
-//         print("ldi    r24,lo8(0)");
-//         print("ldi    r25,hi8(0)");
-//         print("# push two byte expression onto stack");
-//         print("push   r25");
-//         print("push   r24");
-//         print("");
-//         print("# Load constant int 0");
-//         print("ldi    r24,lo8(0)");
-//         print("ldi    r25,hi8(0)");
-//         print("# push two byte expression onto stack");
-//         print("push   r25");
-//         print("push   r24");
-//         print("");
-	    print("### Meggy.getPixel(x,y) call");
-        print("# load a one byte expression off stack");
-        print("pop    r22");
-        print("ldi r22, lo8(4)");
-        print("# load a one byte expression off stack");
-        print("pop    r24");
-        print("ldi r24, lo8(4)");
-        print("call   _Z6ReadPxhh");
-        print("# push one byte expression onto stack");
-        print("push   r24");
-        print("");
+		print("### Meggy.getPixel(x,y) call");
+		print("# load a one byte expression off stack");
+		print("pop    r22");
+		print("# load a one byte expression off stack");
+		print("pop    r24");
+		print("call   _Z6ReadPxhh");
+		print("# push one byte expression onto stack");
+		print("push   r24");
+		print("");
 	}
 	
 	
@@ -548,8 +637,8 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		// Push the high byte first
 		// Push the low byte second (top of stack)		
 		print("/* Load constant */");
-		print("ldi r25, hi8(" + node.getIntValue() + ")");
 		print("ldi r24, lo8(" + node.getIntValue() + ")");
+		print("ldi r25, hi8(" + node.getIntValue() + ")");
 		print("/* Push constant onto stack */");
 		print("push r25");
 		print("push r24");
@@ -559,13 +648,12 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	public void inColorExp(ColorLiteral node) {
 		// Push the high byte first
 		// Push the low byte second (top of stack)
-		print("/* Color literal */");
-		print("ldi r25, hi8(" + node.getIntValue() + ")");
-		print("ldi r24, lo8(" + node.getIntValue() + ")");
-		print("/* Push color literal onto stack */");
-		print("push r25");
-		print("push r24");
+		print("# Color expression");
+		print("ldi    r22, " + node.getIntValue());
+		print("# push one byte expression onto stack");
+		print("push   r22");
 		print("");
+
 	}
 	
 	public void outButtonExp(ButtonLiteral node) {
