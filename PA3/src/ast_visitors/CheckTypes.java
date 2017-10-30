@@ -90,6 +90,7 @@ public class CheckTypes extends DepthFirstVisitor
       this.mCurrentST.setExpType(node, Type.BOOL);
     }
     
+    // do not accept int
     public void outEqualExp(EqualExp node)
     {
       if (!(((this.mCurrentST.getExpType(node.getLExp()) == Type.BOOL) &

@@ -110,22 +110,25 @@ program ::=
 	
 main_class ::=
         CLASS:c ID:name LBRACE PUBLIC STATIC VOID MAIN 
-		LPAREN STRING LBRACKET RBRACKET ID:param RPAREN LBRACE block_statement:blk RBRACE
+		LPAREN STRING LBRACKET RBRACKET ID:param RPAREN block_statement:blk
           {:
           	RESULT = new MainClass(c.line, c.pos, name.lexeme, param.lexeme, blk);
           :}
         RBRACE 
     ;
     
-// A wrapper for statement_list
-block_statement ::= statement_list:slist
+block_statement ::=
+	LBRACE:l statement_list:slist RBRACE
 	{: 
-		IStatement first = slist.get(0);
-		RESULT = new BlockStatement(first.getLine(), first.getPos(), slist); 
+		RESULT = new BlockStatement(l.line, l.pos, slist); 
+	:}
+		
+	| LBRACE:l RBRACE
+	{:
+		RESULT = new BlockStatement(l.line, l.pos, new LinkedList<IStatement>());
 	:}
 	;
 	
-// Statement*
 statement_list ::= statement_list:list statement:s
 	{: list.add(s);
 	 RESULT = list; 
@@ -139,11 +142,7 @@ statement_list ::= statement_list:list statement:s
 	:}
 	;
 	
-statement ::= LBRACE:l statement_list:blk RBRACE
-		{:
-			RESULT = new BlockStatement(l.line, l.pos, blk);
-		:}
-		| MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI
+statement ::= MEGGYSETPIXEL:op LPAREN exp:a COMMA exp:b COMMA exp:c RPAREN SEMI
 		{: 
 			RESULT = new MeggySetPixel(op.line, op.pos, a, b, c); 
 		:}
@@ -151,15 +150,15 @@ statement ::= LBRACE:l statement_list:blk RBRACE
 		{:
 			RESULT = new MeggyDelay(op.line, op.pos, a);
 		:}
-		| IF:op LPAREN exp:arg RPAREN statement:b 
+		| IF:op LPAREN exp:arg RPAREN block_statement:b
 		{:
 			RESULT = new IfStatement(op.line, op.pos, arg, b, null);
 		:}
-		| IF:op LPAREN exp:arg RPAREN statement:b ELSE statement:c
+		| IF:op LPAREN exp:arg RPAREN block_statement:b ELSE block_statement:c
 		{:
 			RESULT = new IfStatement(op.line, op.pos, arg, b, c);
 		:}
-		| WHILE:op LPAREN exp:arg RPAREN statement:b
+		| WHILE:op LPAREN exp:arg RPAREN block_statement:b
 		{:
 			RESULT = new WhileStatement(op.line, op.pos, arg, b);
 		:}

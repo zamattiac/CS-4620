@@ -88,12 +88,26 @@ main:
     eor    r0,r0
     eor    r1,r1
     
+    # Casting int to byte by popping
+    # 2 bytes off stack and only pushing low order bits
+    # back on.  Low order bits are on top of stack.
+    pop    r24
+    pop    r25
+    push   r24
+    
     /* Load constant */
     ldi r24, lo8(4)
     ldi r25, hi8(4)
     /* Push constant onto stack */
     push r25
     push r24
+    
+    # Casting int to byte by popping
+    # 2 bytes off stack and only pushing low order bits
+    # back on.  Low order bits are on top of stack.
+    pop    r24
+    pop    r25
+    push   r24
     
     # equality check expression
     # load a one byte expression off stack
