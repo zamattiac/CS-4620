@@ -1,0 +1,39 @@
+Scope 0:
+	Class STE c3 of type TYPE
+	 Scope of c3:
+		Method STE fm
+ 	 Returns int
+	 Scope of fm:
+		 var 	p int 3
+
+		 var 	o int 1
+
+
+		Method STE fn
+ 	 Returns int
+	 Scope of fn:
+		 var 	i byte 1
+
+		 var 	n int 2
+
+
+
+	Class STE c2 of type TYPE
+	 Scope of c2:
+		Method STE fm
+ 	 Returns int
+	 Scope of fm:
+		 var 	p int 3
+
+		 var 	o int 1
+
+
+		Method STE fn
+ 	 Returns int
+	 Scope of fn:
+		 var 	i int 1
+
+		 var 	n int 3
+
+
+

@@ -1,0 +1,46 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE c2 of type TYPE
+		 Scope of class c2:
+			Variables:
+			Methods:
+				Method STE c2f1 returns INT
+				 Scope of method c2f1:
+					Formals:
+						 var 	i BYTE 3
+
+						 var 	n BYTE 4
+
+					Variables:
+
+				Method STE c2f2 returns MAINCLASS;
+				 Scope of method c2f2:
+					Formals:
+					Variables:
+
+
+	Class STE c3 of type TYPE
+		 Scope of class c3:
+			Variables:
+			Methods:
+				Method STE c3f1 returns INT
+				 Scope of method c3f1:
+					Formals:
+						 var 	i BYTE 3
+
+						 var 	n INT 4
+
+					Variables:
+
+				Method STE c3f2 returns BYTE
+				 Scope of method c3f2:
+					Formals:
+						 var 	o INT 3
+
+						 var 	p BYTE 5
+
+					Variables:
+
+
+
