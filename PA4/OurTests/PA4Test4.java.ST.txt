@@ -1,0 +1,16 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE methodClass of type TYPE
+		 Scope of class methodClass:
+			Variables:
+			Methods:
+				Method STE method returns MAINCLASS;
+				 Scope of method method:
+					Formals:
+						 var 	i INT 3
+
+					Variables:
+
+
+

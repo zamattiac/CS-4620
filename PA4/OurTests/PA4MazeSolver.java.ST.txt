@@ -1,0 +1,104 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE Solver of type TYPE
+		 Scope of class Solver:
+			Variables:
+			Methods:
+				Method STE initMaze1 returns MAINCLASS;
+				 Scope of method initMaze1:
+					Formals:
+					Variables:
+
+				Method STE initMaze2 returns MAINCLASS;
+				 Scope of method initMaze2:
+					Formals:
+					Variables:
+
+				Method STE initMazeCool returns MAINCLASS;
+				 Scope of method initMazeCool:
+					Formals:
+					Variables:
+
+				Method STE run returns MAINCLASS;
+				 Scope of method run:
+					Formals:
+					Variables:
+
+				Method STE inBounds returns BOOL
+				 Scope of method inBounds:
+					Formals:
+						 var 	x BYTE 3
+
+						 var 	y BYTE 4
+
+					Variables:
+
+				Method STE isDark returns BOOL
+				 Scope of method isDark:
+					Formals:
+						 var 	x BYTE 3
+
+						 var 	y BYTE 4
+
+					Variables:
+
+				Method STE isBLUE returns BOOL
+				 Scope of method isBLUE:
+					Formals:
+						 var 	x BYTE 3
+
+						 var 	y BYTE 4
+
+					Variables:
+
+				Method STE findTargetOrMove returns MAINCLASS;
+				 Scope of method findTargetOrMove:
+					Formals:
+						 var 	nextX BYTE 3
+
+						 var 	nextY BYTE 4
+
+						 var 	targetX BYTE 5
+
+						 var 	targetY BYTE 6
+
+					Variables:
+
+				Method STE move returns MAINCLASS;
+				 Scope of method move:
+					Formals:
+						 var 	currentX BYTE 3
+
+						 var 	currentY BYTE 4
+
+						 var 	targetX BYTE 5
+
+						 var 	targetY BYTE 6
+
+					Variables:
+
+				Method STE mazeRow returns MAINCLASS;
+				 Scope of method mazeRow:
+					Formals:
+						 var 	startcol BYTE 3
+
+						 var 	endcol BYTE 4
+
+						 var 	row BYTE 5
+
+					Variables:
+
+				Method STE mazeCol returns MAINCLASS;
+				 Scope of method mazeCol:
+					Formals:
+						 var 	col BYTE 3
+
+						 var 	startrow BYTE 4
+
+						 var 	endrow BYTE 5
+
+					Variables:
+
+
+

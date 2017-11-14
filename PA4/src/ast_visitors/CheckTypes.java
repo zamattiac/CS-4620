@@ -57,6 +57,14 @@ public class CheckTypes extends DepthFirstVisitor
 		// TODO: change to expression type set (PA5)
 		this.mCurrentST.pushClassScope(node.getId());	
 	}
+
+	public void outThisExp(ThisLiteral node) {
+		// TODO: change to expression type set (PA5)
+		Scope first = mCurrentST.mScopeStack.pop();
+		String className = mCurrentST.mScopeStack.peek().name;
+		mCurrentST.mScopeStack.push(first);
+		this.mCurrentST.pushClassScope(className);	
+	}
 	
 	public void visitCallStatement(CallStatement node) {
 		// TODO: push scope of class type of the node.getExp() (PA5)
@@ -99,6 +107,8 @@ public class CheckTypes extends DepthFirstVisitor
 		// Remove class scope
 		// Remove method scope
 		this.mCurrentST.popScope();
+		// Don't pop scope if called using 'this', stay in scope, kids
+		//if (!(node.getExp() instanceof ThisLiteral)) this.mCurrentST.popScope();
 		this.mCurrentST.popScope();
 	}
 
@@ -143,6 +153,8 @@ public class CheckTypes extends DepthFirstVisitor
 		// Remove class scope
 		// Remove method scope
 		this.mCurrentST.popScope();
+		// Don't pop scope if called using 'this', stay in scope, kids
+		//if (!(node.getExp() instanceof ThisLiteral)) this.mCurrentST.popScope();
 		this.mCurrentST.popScope();
 		this.mCurrentST.setExpType(node, mCurrentST.lookupSymbol(node.getId()).type);
 	}
@@ -151,6 +163,7 @@ public class CheckTypes extends DepthFirstVisitor
     public void outIntType(IntType node) {}
 	public void outByteType(ByteType node) {}
 	public void outVoidType(VoidType node) {}
+	public void outBoolType(BoolType node) {}
 
     public void visitFormal(Formal node) {
     }
@@ -205,7 +218,10 @@ public class CheckTypes extends DepthFirstVisitor
 			"Invalid type returned from method " + node.getName(),
 				node.getLine(), node.getPos());
 			}
-        }
+		}
+		else if (methodType != Type.VOID) throw new SemanticException(
+			"Method must return " + methodType, node.getLine(), node.getPos()
+		);
         outMethodDecl(node);
     }
 	public void inMethodDecl(MethodDecl node) {

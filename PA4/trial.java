@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-
 import meggy.Meggy;
 
 class trial {

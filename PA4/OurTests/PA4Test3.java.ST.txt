@@ -1,0 +1,4 @@
+Main scope of program:
+	Variables:
+	Classes:
+

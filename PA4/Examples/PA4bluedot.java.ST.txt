@@ -1,0 +1,18 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE Simple of type TYPE
+		 Scope of class Simple:
+			Variables:
+			Methods:
+				Method STE bluedot returns MAINCLASS;
+				 Scope of method bluedot:
+					Formals:
+						 var 	x BYTE 3
+
+						 var 	y BYTE 4
+
+					Variables:
+
+
+
