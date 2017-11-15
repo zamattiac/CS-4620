@@ -25,36 +25,6 @@ public class MethodSTE extends STE {
 
 		scope = new MethodScope(this.name);
 	}
-	// 	
-	// 	// Adds a var STE to the children list
-	// 	public void addVar(VarDecl node) {
-	// 		scope.addVar(new VarSTE((VarDecl)node, this.offsetCount));
-	// 		//System.out.println("Adding var " + node.getName() + " at offset " + this.offsetCount);
-	// 		if (node.getType() instanceof IntType) {
-	// 			//System.out.println("Allocating 2 bytes space");
-	// 			this.offsetCount += 2;
-	// 		}
-	// 		else {
-	// 			//System.out.println("Allocating 1 byte space");
-	// 			this.offsetCount+=1;
-	// 		}
-	// 	}
-	// 	
-	// 	// Adds a var STE to the symbols list
-	// 	public void addFormal(Formal node) {
-	// 		VarSTE ste = new VarSTE((Formal)node, this.offsetCount);
-	// 		scope.addFormal(ste);
-	// 		//System.out.println("Adding formal " + node.getName() + " at offset " + this.offsetCount);
-	// 		// Add to formal signature list for checking
-	// 		if (node.getType() instanceof IntType) {
-	// 			//System.out.println("Allocating 2 bytes space");
-	// 			this.offsetCount += 2;
-	// 		}
-	// 		else {
-	// 			//System.out.println("Allocating 1 byte space");
-	// 			this.offsetCount+=1;
-	// 		}
-	// 	}
 
 	public String toString() {
 		return "\t\t\t\tMethod STE " + this.name + " returns " + this.type + "\n" + scope;

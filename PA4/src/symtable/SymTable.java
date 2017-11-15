@@ -42,7 +42,7 @@ public class SymTable {
     }
 
     public void printStack() {
-        Stack<Scope> copy = (Stack<Scope>)mScopeStack.clone();
+        Stack<Scope> copy = (Stack<Scope>) mScopeStack.clone();
         while (!copy.empty()) {
             System.out.println(copy.pop().name);
         }

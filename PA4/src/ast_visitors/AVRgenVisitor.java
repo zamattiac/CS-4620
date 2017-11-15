@@ -1,5 +1,5 @@
 /**
- * This ast walker generates dot output for the AST.  
+ * This ast walker generates AVR output for the AST.  
  *
  * 6/06 - Modified from Brian Richard's ParserTest.Java.
  *        Michelle Strout
@@ -147,6 +147,7 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 
 	/*
 		PA4 - Method Decls, Method calls
+		This, new
 	*/
 	public void inTopClassDecl(TopClassDecl node) {
 		mCurrentST.pushClassScope(node.getName());
@@ -436,6 +437,7 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	}
 
 	/*
+		PA3
 	
 		Meggy Statements
 	
@@ -488,6 +490,7 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 
 	/*
 	
+		PA 3
 		Conditional statements
 		
 	*/
@@ -581,7 +584,7 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	}
 
 	/*
-	
+			PA3
 			Logical / mathematical operations
 	
 	*/
@@ -1001,7 +1004,7 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 				System.exit(1);
 			}
 			print("# IdExp");
-			print("# load value for variable " + node.getLexeme());	
+			print("# load value for variable " + node.getLexeme());
 			print("# variable is a local or param variable");
 			print("");
 
