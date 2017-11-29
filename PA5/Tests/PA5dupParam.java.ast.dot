@@ -1,0 +1,29 @@
+digraph ASTGraph {
+0 [ label="Program" ];
+1 [ label="MainClass" ];
+0 -> 1
+2 [ label="BlockStatement" ];
+1 -> 2
+3 [ label="IfStatement" ];
+2 -> 3
+4 [ label="TrueLiteral\ntrue" ];
+3 -> 4
+5 [ label="BlockStatement" ];
+3 -> 5
+6 [ label="BlockStatement" ];
+3 -> 6
+7 [ label="TopClassDecl" ];
+0 -> 7
+8 [ label="MethodDecl" ];
+7 -> 8
+9 [ label="VoidType" ];
+8 -> 9
+10 [ label="Formal" ];
+8 -> 10
+11 [ label="IntType" ];
+10 -> 11
+12 [ label="Formal" ];
+8 -> 12
+13 [ label="IntType" ];
+12 -> 13
+}

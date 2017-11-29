@@ -1,0 +1,119 @@
+digraph ASTGraph {
+0 [ label="Program" ];
+1 [ label="MainClass" ];
+0 -> 1
+2 [ label="BlockStatement" ];
+1 -> 2
+3 [ label="CallStatement" ];
+2 -> 3
+4 [ label="NewExp" ];
+3 -> 4
+5 [ label="TopClassDecl" ];
+0 -> 5
+6 [ label="VarDecl" ];
+5 -> 6
+7 [ label="IntType" ];
+6 -> 7
+8 [ label="VarDecl" ];
+5 -> 8
+9 [ label="ByteType" ];
+8 -> 9
+10 [ label="MethodDecl" ];
+5 -> 10
+11 [ label="IntType" ];
+10 -> 11
+12 [ label="IntLiteral\n5" ];
+10 -> 12
+13 [ label="MethodDecl" ];
+5 -> 13
+14 [ label="VoidType" ];
+13 -> 14
+15 [ label="MeggySetPixel" ];
+13 -> 15
+16 [ label="ByteCast" ];
+15 -> 16
+17 [ label="IntLiteral\n4" ];
+16 -> 17
+18 [ label="ByteCast" ];
+15 -> 18
+19 [ label="IntLiteral\n0" ];
+18 -> 19
+20 [ label="ColorLiteral\nMeggy.Color.ORANGE" ];
+15 -> 20
+21 [ label="CallStatement" ];
+13 -> 21
+22 [ label="NewExp" ];
+21 -> 22
+23 [ label="IntLiteral\n3" ];
+21 -> 23
+24 [ label="TopClassDecl" ];
+0 -> 24
+25 [ label="VarDecl" ];
+24 -> 25
+26 [ label="ByteType" ];
+25 -> 26
+27 [ label="VarDecl" ];
+24 -> 27
+28 [ label="ByteType" ];
+27 -> 28
+29 [ label="VarDecl" ];
+24 -> 29
+30 [ label="IntType" ];
+29 -> 30
+31 [ label="VarDecl" ];
+24 -> 31
+32 [ label="ToneType" ];
+31 -> 32
+33 [ label="MethodDecl" ];
+24 -> 33
+34 [ label="IntType" ];
+33 -> 34
+35 [ label="VarDecl" ];
+33 -> 35
+36 [ label="ByteType" ];
+35 -> 36
+37 [ label="VarDecl" ];
+33 -> 37
+38 [ label="IntType" ];
+37 -> 38
+39 [ label="VarDecl" ];
+33 -> 39
+40 [ label="BoolType" ];
+39 -> 40
+41 [ label="IntLiteral\n5" ];
+33 -> 41
+42 [ label="MethodDecl" ];
+24 -> 42
+43 [ label="VoidType" ];
+42 -> 43
+44 [ label="Formal" ];
+42 -> 44
+45 [ label="IntType" ];
+44 -> 45
+46 [ label="VarDecl" ];
+42 -> 46
+47 [ label="ColorType" ];
+46 -> 47
+48 [ label="MeggySetPixel" ];
+42 -> 48
+49 [ label="ByteCast" ];
+48 -> 49
+50 [ label="MinusExp" ];
+49 -> 50
+51 [ label="CallExp" ];
+50 -> 51
+52 [ label="ThisLiteral\nthis" ];
+51 -> 52
+53 [ label="CallExp" ];
+50 -> 53
+54 [ label="ThisLiteral\nthis" ];
+53 -> 54
+55 [ label="ByteCast" ];
+48 -> 55
+56 [ label="IntLiteral\n0" ];
+55 -> 56
+57 [ label="ColorLiteral\nMeggy.Color.BLUE" ];
+48 -> 57
+58 [ label="TopClassDecl" ];
+0 -> 58
+}
