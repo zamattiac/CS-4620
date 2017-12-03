@@ -1,0 +1,40 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE Dot of type TYPE
+		 Scope of class Dot:
+			Variables:
+						 var 	curr_x BYTE 0
+
+						 var 	curr_y BYTE 1
+
+						 var 	dotcolor COLOR 2
+
+			Methods:
+				Method STE run returns MAINCLASS;
+				 Scope of method run:
+					Formals:
+					Variables:
+						 var 	localvar MAINCLASS; 2
+
+
+				Method STE movedot returns MAINCLASS;
+				 Scope of method movedot:
+					Formals:
+						 var 	x BYTE 2
+
+						 var 	y BYTE 3
+
+					Variables:
+
+				Method STE inBounds returns BOOL
+				 Scope of method inBounds:
+					Formals:
+						 var 	x BYTE 2
+
+						 var 	y BYTE 3
+
+					Variables:
+
+
+

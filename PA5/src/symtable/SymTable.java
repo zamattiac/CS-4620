@@ -24,6 +24,8 @@ public class SymTable {
     // Access the nesting level 0 scope here 
     public MainScope main;
     public Stack<Scope> mScopeStack;
+    // allows the parent node to choose to load scope of this,new,ID node for call statements, expressions
+    public String childClassName;
 
     public int heapOffset = 0;
 
@@ -118,6 +120,7 @@ public class SymTable {
     // For local vars of a method
     // Must be in method scope to access them
     public LocalVarSTE lookupLocalVar(String sym) {
+        // System.out.println(mScopeStack.peek());
         MethodScope currentScope = (MethodScope) mScopeStack.peek();
         return currentScope.lookupLocalVar(sym);
     }
@@ -160,7 +163,9 @@ public class SymTable {
 		else if (t instanceof BoolType)
 			return Type.BOOL;
 		else if (t instanceof VoidType)
-			return Type.VOID;
+            return Type.VOID;
+        else if (t instanceof ToneType) 
+            return Type.TONE;
 		// Class variable declaration
 		else if (t instanceof ClassType) {
             ClassType type = (ClassType) t;
@@ -189,6 +194,7 @@ public class SymTable {
         Type type = getIDType(node);
         ClassScope top = (ClassScope) mScopeStack.peek();
         MemberVarSTE newSTE = new MemberVarSTE(node, top.offsetCount, type);
+        if (node.getType() instanceof ClassType) newSTE.classTypeName = ((ClassType)node.getType()).getName();
 		top.symbols.put(newSTE.name, newSTE);
 		top.vars.put(newSTE.name, newSTE);
 		top.offsetCount += type.getAVRTypeSize();
@@ -210,6 +216,7 @@ public class SymTable {
         Type type = getIDType(node);
         MethodScope top = (MethodScope)mScopeStack.peek();
         LocalVarSTE newSTE = new LocalVarSTE(node, top.offsetCount, type);
+        if (node.getType() instanceof ClassType) newSTE.classTypeName = ((ClassType)node.getType()).getName();
 		top.symbols.put(node.getName(), newSTE);
 		top.locals.put(node.getName(), newSTE);
 		top.offsetCount += type.getAVRTypeSize();

@@ -1,0 +1,16 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE C of type TYPE
+		 Scope of class C:
+			Variables:
+						 var 	i INT 0
+
+			Methods:
+				Method STE set returns BYTE
+				 Scope of method set:
+					Formals:
+					Variables:
+
+
+

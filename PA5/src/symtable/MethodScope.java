@@ -11,6 +11,7 @@ public class MethodScope extends Scope {
 		super(name);
 		this.formals = new LinkedHashMap<String, FormalSTE>();
 		this.locals = new LinkedHashMap<String, LocalVarSTE>();
+		this.offsetCount = 3;
 	}
 
 	// // Adds a formal STE to the symbols list

@@ -1,0 +1,27 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE C of type TYPE
+		 Scope of class C:
+			Variables:
+						 var 	i INT 0
+
+						 var 	c MAINCLASS; 2
+
+			Methods:
+				Method STE foo returns INT
+				 Scope of method foo:
+					Formals:
+						 var 	p BOOL 2
+
+					Variables:
+						 var 	b MAINCLASS; 3
+
+
+
+	Class STE B of type TYPE
+		 Scope of class B:
+			Variables:
+			Methods:
+
+

@@ -1,0 +1,43 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE C of type TYPE
+		 Scope of class C:
+			Variables:
+						 var 	oy MAINCLASS; 0
+
+			Methods:
+				Method STE setP returns MAINCLASS;
+				 Scope of method setP:
+					Formals:
+						 var 	x BYTE 2
+
+						 var 	y BYTE 3
+
+						 var 	c COLOR 4
+
+					Variables:
+						 var 	ox MAINCLASS; 5
+
+
+
+	Class STE Ind of type TYPE
+		 Scope of class Ind:
+			Variables:
+						 var 	_i BYTE 0
+
+			Methods:
+				Method STE put returns MAINCLASS;
+				 Scope of method put:
+					Formals:
+						 var 	i BYTE 2
+
+					Variables:
+
+				Method STE get returns BYTE
+				 Scope of method get:
+					Formals:
+					Variables:
+
+
+

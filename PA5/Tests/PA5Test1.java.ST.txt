@@ -1,0 +1,16 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE cl of type TYPE
+		 Scope of class cl:
+			Variables:
+			Methods:
+				Method STE function returns BYTE
+				 Scope of method function:
+					Formals:
+					Variables:
+						 var 	i BYTE 3
+
+
+
+

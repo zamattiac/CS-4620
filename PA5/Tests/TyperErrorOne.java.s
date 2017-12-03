@@ -19,9 +19,9 @@ main:
     /* Need to call this so that the meggy library gets set up */
     # Block body
     # NewExp
-    ldi    r24, lo8(4)
-    ldi    r25, hi8(4)
-    # allocating object of size 4 on heap
+    ldi    r24, lo8(2)
+    ldi    r25, hi8(2)
+    # allocating object of size 2 on heap
     call    malloc
     # push object address
     # push two byte expression onto stack
@@ -30,29 +30,23 @@ main:
     
     #### function call
     # put parameter values into appropriate registers
-    /* True/1 expression */
-    ldi r22, 1
-    push r22
-    pop    r22
-    pop    r23
     # receiver will be passed as first param
     # load a two byte expression off stack
     pop    r24
     pop    r25
     
-    call    C_foo
+    call    C_set
     # End of block
     .text
-.global C_foo
-    .type  C_foo, @function
-C_foo:
+.global C_set
+    .type  C_set, @function
+C_set:
     push   r29
     push   r28
     # make space for locals and params
     ldi    r30, 0
     push   r30
     push   r30
-    push r30
     
     # Copy stack pointer to frame pointer
     in     r28,__SP_L__
@@ -61,31 +55,39 @@ C_foo:
     # save off parameters
     std    Y + 2, r25
     std    Y + 1, r24
-    std    Y + 2, r22
-/* done with function C_foo prologue */
+/* done with function C_set prologue */
     
     
-    /* Load constant */
-    ldi r24, lo8(3)
-    ldi r25, hi8(3)
-    /* Push constant onto stack */
-    push r25
-    push r24
+    # IdExp
+    # load value for variable i
+    # variable is a local or param variable
     
-/* epilogue start for C_foo */
+    # loading the implicit "this"
+    
+    # load a two byte variable from base+offset
+    ldd    r31, Y + 2
+    ldd    r30, Y + 1
+    # variable is a member variable
+    
+    # load a two byte variable from base+offset
+    ldd    r25, Z + 1
+    ldd    r24, Z + 0
+    # push two byte expression onto stack
+    push   r25
+    push   r24
+    
+/* epilogue start for C_set */
     # load expression off stack
     # handle return value
-    pop    r25
     pop r24
     # pop space off stack for parameters and locals
-    pop    r30
     pop    r30
     pop    r30
     # restoring the frame pointer
     pop    r28
     pop    r29
     ret
-    .size C_foo, .-C_foo
+    .size C_set, .-C_set
     
 
 

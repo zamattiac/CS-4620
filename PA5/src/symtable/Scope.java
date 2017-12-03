@@ -11,7 +11,6 @@ public abstract class Scope {
 	public Scope(String name) {
 		this.symbols = new LinkedHashMap<String, STE>();
 		this.name = name;
-		this.offsetCount = 3;
 	}
 
 	// Return symbols to check through

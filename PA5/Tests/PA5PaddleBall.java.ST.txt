@@ -1,0 +1,109 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE PaddleBallBoard of type TYPE
+		 Scope of class PaddleBallBoard:
+			Variables:
+			Methods:
+				Method STE run returns MAINCLASS;
+				 Scope of method run:
+					Formals:
+					Variables:
+						 var 	b MAINCLASS; 2
+
+						 var 	p MAINCLASS; 4
+
+
+
+	Class STE Paddle of type TYPE
+		 Scope of class Paddle:
+			Variables:
+						 var 	centerX BYTE 0
+
+						 var 	color COLOR 1
+
+			Methods:
+				Method STE init returns MAINCLASS;
+				 Scope of method init:
+					Formals:
+					Variables:
+
+				Method STE drawPaddle returns MAINCLASS;
+				 Scope of method drawPaddle:
+					Formals:
+						 var 	x BYTE 2
+
+					Variables:
+
+				Method STE moveLeft returns MAINCLASS;
+				 Scope of method moveLeft:
+					Formals:
+					Variables:
+
+				Method STE moveRight returns MAINCLASS;
+				 Scope of method moveRight:
+					Formals:
+					Variables:
+
+				Method STE inBounds returns BOOL
+				 Scope of method inBounds:
+					Formals:
+						 var 	x BYTE 2
+
+						 var 	y BYTE 3
+
+					Variables:
+
+
+	Class STE Ball of type TYPE
+		 Scope of class Ball:
+			Variables:
+						 var 	currentX BYTE 0
+
+						 var 	currentY BYTE 1
+
+						 var 	prevX BYTE 2
+
+						 var 	prevY BYTE 3
+
+						 var 	ballColor COLOR 4
+
+			Methods:
+				Method STE init returns MAINCLASS;
+				 Scope of method init:
+					Formals:
+					Variables:
+
+				Method STE inBounds returns BOOL
+				 Scope of method inBounds:
+					Formals:
+						 var 	x BYTE 2
+
+						 var 	y BYTE 3
+
+					Variables:
+
+				Method STE collision returns BOOL
+				 Scope of method collision:
+					Formals:
+						 var 	x BYTE 2
+
+						 var 	y BYTE 3
+
+					Variables:
+
+				Method STE move returns MAINCLASS;
+				 Scope of method move:
+					Formals:
+					Variables:
+						 var 	nextX BYTE 2
+
+						 var 	nextY BYTE 3
+
+						 var 	deltaX BYTE 4
+
+						 var 	deltaY BYTE 5
+
+
+
+

@@ -39,9 +39,6 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	private Stack<Integer> nodeStack;
 	private SymTable mCurrentST;
 
-	// Keep epilog from printing twice
-	private boolean notPrinted = true;
-
 	// Prints with indent
 	public void print(String s) {
 		out.println("    " + s);
@@ -115,37 +112,35 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	}
 
 	public void outProgram(Program node) {
-		//if (nodeStack.empty() && notPrinted) {
-		if (notPrinted) {
-			System.out.println("Generate epilog using avrF.rtl.s");
-			InputStream mainPrologue = null;
-			BufferedReader reader = null;
-			try {
-				// The syntax for loading a text resource file 
-				// from a jar file here:
-				// http://www.rgagnon.com/javadetails/java-0077.html
-				mainPrologue = this.getClass().getClassLoader().getResourceAsStream("avrF.rtl.s");
-				reader = new BufferedReader(new InputStreamReader(mainPrologue));
-
-				String line = null;
-				while ((line = reader.readLine()) != null) {
-					out.println(line);
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			} finally {
-				try {
-					if (mainPrologue != null)
-						mainPrologue.close();
-					if (reader != null)
-						reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			notPrinted = false;
-		}
 		out.flush();
+	}
+
+	public void outMainClass(MainClass node) {
+		System.out.println("Generate epilog using avrF.rtl.s");
+		InputStream mainPrologue = null;
+		BufferedReader reader = null;
+		try {
+			// The syntax for loading a text resource file 
+			// from a jar file here:
+			// http://www.rgagnon.com/javadetails/java-0077.html
+			mainPrologue = this.getClass().getClassLoader().getResourceAsStream("avrF.rtl.s");
+			reader = new BufferedReader(new InputStreamReader(mainPrologue));
+
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				out.println(line);
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		try {
+			if (mainPrologue != null)
+			mainPrologue.close();
+			if (reader != null)
+				reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -249,14 +244,13 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		if (node.getType() != null) {
 			node.getType().accept(this);
 		}
-		for (VarSTE ste : ((MethodScope) mCurrentST.mScopeStack.peek()).getFormals()) {
+		for (STE ste : ((MethodScope) mCurrentST.mScopeStack.peek()).getSymbols()) {
 			print("push r30");
 			pushes++;
 			if (ste.type == Type.INT) {
 				print("push r30");
 				pushes++;
 			}
-
 		}
 		print("");
 		print("# Copy stack pointer to frame pointer");
@@ -308,10 +302,14 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		if (node.getExp() != null) {
 			String l0 = getLabel();
 			String l1 = getLabel();
-			print("# load expression off stack");
 			print("# handle return value");
+			print("# load expression off stack");
+			print("pop   r24");
+			if (mCurrentST.getExpType(node.getExp()) == Type.INT) {
+				print("pop    r25");
+			}
 			// Always replace the higher byte with 0/-1
-			if (mCurrentST.getExpType(node.getExp()) == Type.BYTE) {
+			else if (mCurrentST.getExpType(node.getExp()) == Type.BYTE) {
 				print("# promoting a byte to an int");
 				print("tst     r24");
 				print("brlt     MJ_L" + l0);
@@ -320,11 +318,6 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 				printLabel(l0);
 				print("ldi    r25, hi8(-1)");
 				printLabel(l1);
-			} else {
-				if (node.getType() instanceof IntType) {
-					print("pop    r25");
-				}
-				print("pop r24");
 			}
 		}
 		print("# pop space off stack for parameters and locals");
@@ -351,6 +344,8 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	public void visitCallStatement(CallStatement node) {
 		// 'This' or 'new'
 		node.getExp().accept(this);
+		// Push class scope of the expression
+		mCurrentST.pushClassScope(mCurrentST.childClassName);
 
 		LinkedList<IExp> args = node.getArgs();
 		// What register to start at
@@ -363,6 +358,10 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("# put parameter values into appropriate registers");
 		// If ARG is BYTE going into INT make it an INT
 		LinkedList<VarSTE> formals = mCurrentST.lookupMethod(node.getId()).scope.getFormals();
+
+		// Pop class scope
+		mCurrentST.popScope();
+
 		Iterator<VarSTE> formalItr = formals.listIterator();
 		Iterator<IExp> argItr = args.listIterator();
 		IExp arg;
@@ -414,13 +413,13 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("pop    r25");
 		print("");
 		print("call    " + cl + "_" + node.getId());
-		// Pop class scope
-		mCurrentST.popScope();
 	}
 
 	public void visitCallExp(CallExp node) {
 		// 'this' or 'new'
 		node.getExp().accept(this);
+		// Push class scope of the expression
+		mCurrentST.pushClassScope(mCurrentST.childClassName);
 
 		LinkedList<IExp> args = node.getArgs();
 		// What register to start at
@@ -434,6 +433,12 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		// If ARG is BYTE going into INT make it an INT
 		// We should be in method scope at this point
 		LinkedList<VarSTE> formals = mCurrentST.lookupMethod(node.getId()).scope.getFormals();
+
+		Type returnType = mCurrentST.lookupMethod(node.getId()).type;
+
+		// Pop class scope
+		mCurrentST.popScope();
+
 		Iterator<VarSTE> formalItr = formals.listIterator();
 		Iterator<IExp> argItr = args.listIterator();
 		IExp arg;
@@ -478,25 +483,25 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		print("");
 		print("call    " + cl + "_" + node.getId());
 
-		if (mCurrentST.lookupSymbol(node.getId()).type == Type.INT) {
+		if (returnType == Type.INT) {
 			print("# handle return value");
 			print("# push two byte expression onto stack");
 			print("push   r25");
 			print("push   r24");
 			print("");
-		} else {
+		} else if (returnType != Type.VOID) {
 			print("# handle return value");
 			print("# push one byte expression onto stack");
 			print("push   r24");
 			print("");
 		}
-		mCurrentST.popScope();
 	}
 
 	// Do not go to ID literal
 	public void visitNewExp(NewExp node) {
-		this.mCurrentST.pushClassScope(node.getId());
-		String size = String.valueOf(((ClassScope)this.mCurrentST.mScopeStack.peek()).classSize);
+		//this.mCurrentST.pushClassScope(node.getId());
+		mCurrentST.childClassName = node.getId();
+		String size = String.valueOf((this.mCurrentST.lookupClass(node.getId()).scope).classSize);
 		print("# NewExp");
 		print("ldi    r24, lo8(" + size + ")");
 		print("ldi    r25, hi8(" + size + ")");
@@ -530,7 +535,8 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 		Scope first = mCurrentST.mScopeStack.pop();
 		String className = mCurrentST.mScopeStack.peek().name;
 		mCurrentST.mScopeStack.push(first);
-		this.mCurrentST.pushClassScope(className);
+		//this.mCurrentST.pushClassScope(className);
+		mCurrentST.childClassName = className;
 	}
 
 	/*
@@ -541,11 +547,11 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	*/
 
 	public void inBlockStatement(BlockStatement node) {
-		print("# Block body");
+		print("");
 	}
 
 	public void outBlockStatement(BlockStatement node) {
-		print("# End of block");
+		print("");
 	}
 
 	// ONLY ACCEPTS BYTE
@@ -1093,6 +1099,8 @@ public class AVRgenVisitor extends DepthFirstVisitor {
 	// TODO: check for all scopes
 	public void inIdLiteral(IdLiteral node) {
 		VarSTE symbol = this.mCurrentST.lookupVar(node.getLexeme());
+		// Load class name for later class scope loading
+		mCurrentST.childClassName = mCurrentST.lookupVar(node.getLexeme()).classTypeName;
 		print("# IdExp");
 		print("# load value for variable " + node.getLexeme());
 		print("# variable is a local or param variable");

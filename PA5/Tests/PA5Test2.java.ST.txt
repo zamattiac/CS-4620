@@ -1,0 +1,14 @@
+Main scope of program:
+	Variables:
+	Classes:
+	Class STE cl of type TYPE
+		 Scope of class cl:
+			Variables:
+			Methods:
+				Method STE fn returns COLOR
+				 Scope of method fn:
+					Formals:
+					Variables:
+
+
+

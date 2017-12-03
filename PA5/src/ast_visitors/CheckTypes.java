@@ -41,14 +41,15 @@ public class CheckTypes extends DepthFirstVisitor {
 	public void defaultOut(Node node) {
 		System.err.println("Node not implemented in CheckTypes, " + node.getClass());
 	}
+
 	/*
 	PA5
 	Assignment statement
-	this.method()
+	must be in method scope
 	*/
 	public void visitAssignStatement(AssignStatement node) {
 		node.getExp().accept(this);
-		
+
 		Type idType = mCurrentST.lookupVar(node.getId()).type;
 		Type expType = mCurrentST.getExpType(node.getExp());
 
@@ -71,22 +72,30 @@ public class CheckTypes extends DepthFirstVisitor {
 	*/
 
 	public void outNewExp(NewExp node) {
-		// TODO: change to expression type set (PA5)
-		this.mCurrentST.pushClassScope(node.getId());
+		this.mCurrentST.setExpType(node, mCurrentST.lookupClass(node.getId()).type);
+		//this.mCurrentST.pushClassScope(node.getId());
+		mCurrentST.childClassName = node.getId();
 	}
 
 	public void outThisExp(ThisLiteral node) {
 		// TODO: change to expression type set (PA5)
 		Scope first = mCurrentST.mScopeStack.pop();
-		String className = mCurrentST.mScopeStack.peek().name;
+		String cname = mCurrentST.mScopeStack.peek().name;
+		// Find STE parent of the scope to access type
+		ClassSTE c = mCurrentST.lookupClass(cname);
 		mCurrentST.mScopeStack.push(first);
-		this.mCurrentST.pushClassScope(className);
+		this.mCurrentST.setExpType(node, c.type);
+		mCurrentST.childClassName = cname;
+		// this.mCurrentST.pushClassScope(className);
 	}
 
 	public void visitCallStatement(CallStatement node) {
 		// TODO: push scope of class type of the node.getExp() (PA5)
 		// Set class based on type of expression, load scope
 		node.getExp().accept(this);
+		// Push class scope of the expression
+		mCurrentST.pushClassScope(mCurrentST.childClassName);
+		//System.out.println(mCurrentST.mScopeStack.peek().name);
 
 		// Change to scope of method
 		// Error handling provided within symbol table
@@ -130,7 +139,8 @@ public class CheckTypes extends DepthFirstVisitor {
 		// TODO: push scope of class type of the node.getExp() (PA5)
 		// Set class based on type of expression, load scope
 		node.getExp().accept(this);
-
+		// Push class scope of the expression
+		mCurrentST.pushClassScope(mCurrentST.childClassName);
 		// Change to scope of method
 		// Error handling provided within symbol table
 		this.mCurrentST.pushMethodScope(node.getId());
@@ -163,11 +173,12 @@ public class CheckTypes extends DepthFirstVisitor {
 
 		}
 
-		// Remove class scope
 		// Remove method scope
+		// Get type of method call
+		// Remove class scope
 		this.mCurrentST.popScope();
+		this.mCurrentST.setExpType(node, mCurrentST.lookupMethod(node.getId()).type);
 		this.mCurrentST.popScope();
-		this.mCurrentST.setExpType(node, mCurrentST.lookupSymbol(node.getId()).type);
 	}
 
 	public void outIntType(IntType node) {
@@ -182,6 +193,15 @@ public class CheckTypes extends DepthFirstVisitor {
 	public void outBoolType(BoolType node) {
 	}
 
+	public void outColorType(ColorType node) {
+	}
+
+	public void outClassType(ClassType node) {
+	}
+
+	public void outToneType(ToneType node) {
+	}
+
 	public void visitFormal(Formal node) {
 	}
 	public void visitVarDecl(VarDecl node) {
@@ -192,6 +212,10 @@ public class CheckTypes extends DepthFirstVisitor {
 			throw new SemanticException("Undefined symbol " + node.getLexeme(), node.getLine(), node.getPos());
 		}
 		this.mCurrentST.setExpType(node, this.mCurrentST.lookupSymbol(node.getLexeme()).type);
+		// Used for if this is an ID about to have a method called on it so we can load scope
+		if (mCurrentST.lookupVar(node.getLexeme()) != null) {
+			mCurrentST.childClassName = mCurrentST.lookupVar(node.getLexeme()).classTypeName;
+		}
 	}
 
 	public void visitMethodDecl(MethodDecl node) {
@@ -225,7 +249,7 @@ public class CheckTypes extends DepthFirstVisitor {
 			node.getExp().accept(this);
 			Type returnType = mCurrentST.getExpType(node.getExp());
 			// Allow byte expression in an int return
-			if (returnType != methodType && (returnType != Type.BYTE && returnType != Type.INT)) {
+			if (returnType != methodType && (returnType != Type.BYTE && methodType != Type.INT)) {
 				throw new SemanticException("Invalid type returned from method " + node.getName(), node.getLine(),
 						node.getPos());
 			}
@@ -279,7 +303,7 @@ public class CheckTypes extends DepthFirstVisitor {
 	}
 
 	public void outToneExp(ToneLiteral node) {
-		this.mCurrentST.setExpType(node, Type.INT);
+		this.mCurrentST.setExpType(node, Type.TONE);
 	}
 
 	/*
@@ -370,7 +394,7 @@ public class CheckTypes extends DepthFirstVisitor {
 	}
 
 	public void outMeggyToneStart(MeggyToneStart node) {
-		if (this.mCurrentST.getExpType(node.getToneExp()) != Type.INT) {
+		if (this.mCurrentST.getExpType(node.getToneExp()) != Type.TONE) {
 			throw new SemanticException("Tone: Invalid argument type for method MeggyToneStart",
 					node.getToneExp().getLine(), node.getToneExp().getPos());
 		}

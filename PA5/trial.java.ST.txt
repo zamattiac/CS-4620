@@ -4,18 +4,10 @@ Main scope of program:
 	Class STE c2 of type TYPE
 		 Scope of class c2:
 			Variables:
-						 var 	a INT 1
-
 			Methods:
-				Method STE c2f1 returns BYTE
-				 Scope of method c2f1:
+				Method STE five returns BYTE
+				 Scope of method five:
 					Formals:
-						 var 	d BYTE 3
-
-						 var 	b INT 4
-
-						 var 	c INT 6
-
 					Variables:
 
 
